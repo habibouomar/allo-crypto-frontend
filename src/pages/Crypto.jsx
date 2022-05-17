@@ -1,11 +1,12 @@
+
 import React from "react";
 
-function Profil () {
+function Crypto () {
     return (
         <div>
-           <h1>profil</h1>
+           <h1>Crypto</h1>
         </div>
     )
 }
 
-export default Profil
+export default Crypto
