@@ -15,26 +15,24 @@ function Profil() {
     const [bio, setBio] = useState('')
     const [newBio, setNewBio] = useState('')
     function handleChange(evt) {
-         const value = evt.target.value;
-         setNewName(value) 
+        const value = evt.target.value;
+        setNewName(value)
         setState({
-          ...state,
-          [evt.target.name]: value
+            ...state,
+            [evt.target.name]: value
         });
-      }
+    }
 
-    const changeBio = (e)=>{
+    const changeBio = (e) => {
         console.log(e.target.value)
         setNewBio(e.target.value)
     }
-      const modalSubmit = (e)=>{
-         setName(newName)
-         setBio(newBio)
-      }
+    const modalSubmit = (e) => {
+        setName(newName)
+        setBio(newBio)
+    }
 
-    // const handleChangeInput = (e) => {
-    //     setBio(e.target.value);
-    // };
+
     return (
         <body>
 
@@ -54,10 +52,6 @@ function Profil() {
             <div className="bio">
                 <p>{bio}</p>
             </div>
-            <div className="pos">
-                <GiPositionMarker className='PositionMarker-icon icon-home' />
-                <p>Paris</p>
-            </div>
 
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
@@ -65,7 +59,6 @@ function Profil() {
                         <div className="modal-header">
 
                             <h5 className="modal-title" id="exampleModalLabel">Modifier le profil</h5>
-                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Username</label>
                                 <input class="form-control"
@@ -83,10 +76,6 @@ function Profil() {
                                     name="bio"
                                     maxLength="32"
                                 />
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Localisation</label>
-                                <input type="text" class="form-control" id="recipient-name" />
                             </div>
                         </div>
 
