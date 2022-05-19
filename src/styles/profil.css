@@ -26,3 +26,26 @@
 .user {
     width: 220px;
 }
+.modal-header{
+    display: block;
+}
+
+.PositionMarker-icon {
+    font-size: 20px;
+    /* margin-left: 150px */
+}
+
+.pos {
+    display: flex;
+    padding-top: 30px;
+    margin-left: 40px;
+}
+
+.pos p {
+    font-size:15px
+}
+
+.bio {
+    margin-left: 40px;
+}
+
