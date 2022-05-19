@@ -8,7 +8,7 @@ function Profil() {
         bio: ""
     });
 
-    const [name, setName] = useState('Omar')
+    const [name, setName] = useState('Marie')
     const [newName, setNewName] = useState('')
 
     const [bio, setBio] = useState('The world is mine')

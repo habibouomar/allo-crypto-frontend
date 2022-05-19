@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ListComments from './ListComments'
 import Settings from './Settings'
 
-function Post() {
-
+function Post(props) {
+    
     return (
 
         <div className="row">
@@ -16,14 +16,10 @@ function Post() {
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
 
-                            <p>
-                                {' '}
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                                erat a ante.{' '}
-                            </p>
+                            <p> {props.content.text} </p>
 
                             <footer className="blockquote-footer">
-                               Posted <cite title="Source Title">25/02/2018</cite>
+                               Posted <cite title="Source Title"> {props.content.updatedAt.substr(0, 10)} / {props.content.updatedAt.substr(11, 8)} </cite>
                             </footer>
 
                         </blockquote>
