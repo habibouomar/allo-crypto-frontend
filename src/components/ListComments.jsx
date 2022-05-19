@@ -19,7 +19,8 @@ function ListComments() {
             <Button variant="outline-success" onClick={handleShow}> <FontAwesomeIcon icon="message" /> </Button>
 
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+                
+                <Modal.Header>
                     <Modal.Title>Comments</Modal.Title>
                 </Modal.Header>
 
@@ -27,7 +28,7 @@ function ListComments() {
                     <Form>
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Marc</Form.Label>
+                            <Form.Label>Marie</Form.Label>
                             <Form.Control as="textarea" rows={2} />
                         </Form.Group>
 

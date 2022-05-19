@@ -15,11 +15,10 @@ function Seetings() {
 
     return (
         <>
-
             <Button variant="outline-ligh" onClick={handleShow}> <FontAwesomeIcon icon="fa-solid fa-ellipsis" /> </Button>
 
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>Settings</Modal.Title>
                 </Modal.Header>
 

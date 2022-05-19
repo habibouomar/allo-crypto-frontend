@@ -12,7 +12,7 @@ function Post() {
         <div className="row">
             <div className="col-11 pt-3 pb-1">
                 <Card>
-                    <Card.Header> Marc <Settings/> </Card.Header>
+                    <Card.Header> Marie <Settings/> </Card.Header>
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
 

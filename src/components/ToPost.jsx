@@ -9,7 +9,7 @@ function ToPost() {
         <div className="row">
             <div className="col-11 pt-5">
                 <Card>
-                    <Card.Header>Hello Marc</Card.Header>
+                    <Card.Header>Hello Marie</Card.Header>
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
                             <div>
