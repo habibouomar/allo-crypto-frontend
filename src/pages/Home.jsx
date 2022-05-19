@@ -4,16 +4,17 @@ import Post from "../components/Post";
 import TopUserLike from "../components/TopUserLike";
 import TopUserComment from "../components/TopUserComment";
 import '../styles/home.css';
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function Home() {
 
-    // let [content, setContent] = useState("");
+    let [content, setContent] = useState([]);
 
-    // useEffect(() => {
+    useEffect(() => {
 
 
-    // }, []);
+    }, []);
+    
     return (
         <div className="homeContainer container">
             <div className="bloc1">
