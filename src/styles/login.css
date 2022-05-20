@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: url("https://cryptoast.fr/wp-content/uploads/2020/07/9-pays-qui-ont-rendu-les-crypto-monnaies-illegales.jpg");
+}
+
+.div-form {
+    margin-top: 40vh;
+    margin-left: 40%;
+}
+
+input {
+    font-size: 3vh;
+    border-radius: 4px;
+    border-color: gold;
+}
+
+button {
+    font-size: 3vh;
+    border-radius: 4px;
+    border-color: gold;
+}
+
+textarea {
+    font-size: 3vh;
+    border-radius: 4px;
+    border-color: gold;
+}
+
+.ii:focus{
+    outline: none;
+}
