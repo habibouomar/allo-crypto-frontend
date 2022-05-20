@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import Settings from './Settings'
+import Comment from './Comment'
+import { useForm } from "react-hook-form";
 
 function ListComments() {
 
@@ -12,6 +14,17 @@ function ListComments() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const onSubmit = data => {
+        fetch('http://localhost:3002/comment', {
+            method: 'POST',
+            headers: new Headers({ 'content-type': 'application/json' }),
+            body: JSON.stringify(data)
+        })       
+    };
+
 
     return (
         <>
@@ -24,33 +37,14 @@ function ListComments() {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={handleSubmit(onSubmit)} >
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Marie</Form.Label>
-                            <Form.Control as="textarea" rows={2} />
+                            <Form.Control as="textarea" rows={2} placeholder="Your opinion" {...register("text")}/>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <div>
-                                <h4> Marc  <Settings /> </h4>
-                                <p>
-                                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                                    consectetur ac, vestibulum at eros.
-                                </p>
-                            </div>
-
-                            <div>
-                                <h4> Loic  <Settings /> </h4>
-                                <p>
-                                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                                    consectetur ac, vestibulum at eros.
-                                </p>
-                            </div>
-
-                        </Form.Group>
+                        <Comment></Comment>
 
                     </Form>
                 </Modal.Body>

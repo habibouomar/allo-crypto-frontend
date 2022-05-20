@@ -19,7 +19,7 @@ function Home() {
             })
     }, [])
 
-    const onFinishPost = (resultJson) =>{
+    const onFinishPost = (resultJson) => {
         console.log(resultJson);
         fetch('http://localhost:3002/post')
             .then(res => res.json())
