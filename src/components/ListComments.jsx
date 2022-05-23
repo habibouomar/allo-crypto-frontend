@@ -44,14 +44,7 @@ function ListComments(props) {
     useEffect(() => {
         if(checker){
 
-            fetch('http://localhost:3002/comment/get', {
-                method: 'POST',
-                headers: new Headers({ "content-type": "application/json" }),
-                body: JSON.stringify({
-                    ownerID: likerId,
-                    postID: filterId,
-                })
-            })
+            fetch(`http://localhost:3002/comment/${filterId}`)
                 .then(result => result.json())
                 .then(json => {
                     setComment([json])

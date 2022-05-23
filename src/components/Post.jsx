@@ -45,7 +45,7 @@ function Post() {
                                 post.map((elem, index) => {
                                     console.log(elem.text)
                                     return (
-                                        <div className="col-11 pt-3 pb-1">
+                                        <div className="col-11 pt-3 pb-1" key={index}>
                                             <Card>
                                                 <Card.Header>{elem.ownerID.userName}<Settings /> </Card.Header>
                                                 <Card.Body>
