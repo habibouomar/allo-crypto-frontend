@@ -64,7 +64,7 @@ function ListComments(props) {
 
 
 
-    console.log("not sent")
+    console.log("not sent now")
 
 
 
