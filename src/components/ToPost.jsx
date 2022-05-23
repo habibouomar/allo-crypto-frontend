@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import '../styles/home.css';
-import { useForm } from "react-hook-form";
 
+function ToPost(props) {
 
-function ToPost() {
     const [userName,setName] = useState('')
     const [bio,setBio] = useState('')
 
@@ -16,9 +15,9 @@ function ToPost() {
     })
 
 
-    //added after clone
     const [value,setValue] = useState('')
     const userId = localStorage.getItem('userId')
+    
     const sender = (e) =>{
         e.preventDefault()
         fetch('http://localhost:3002/post',{
@@ -31,13 +30,17 @@ function ToPost() {
         }).then(result=>result.json())
             .then(json=>{
                 localStorage.setItem('postfrontId', JSON.stringify(json.postId))
-                console.log(json.postId)
+                console.log("json.postID", json.postId)
+                props.onFinishPost(json);
+                
             })
     }
+
+    
     const changer = (e)=>{
      setValue(e.target.value)
     }
-    //clone end
+
     return (
 
         <div className="row">
@@ -51,10 +54,10 @@ function ToPost() {
                                 <h5 class="card-title pt-2">{bio}</h5>
                             </div>
                             <form>
-                                                                                                                                            {/* {ONCHNAGE added after Clone} */}
+
                                 <input type="text" className="form-control form-control-dark" placeholder="Give the community your tip of the day" onChange={changer}/>
                                 <div className="text-end">
-                                                                                {/* {ONCLICK added after Clone} */}
+
                                     <button type="submit" class="btn btn-primary mt-3 " onClick={sender}> New Post</button>
                                 </div>
                             </form>

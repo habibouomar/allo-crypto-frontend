@@ -51,13 +51,13 @@ function ListComments(props) {
                     console.log(json)
                 })
         }else{
-            console.log('NOT YET')
+           
         }
     }, [filterId])
 
 
 
-    console.log("not sent now")
+
 
 
 

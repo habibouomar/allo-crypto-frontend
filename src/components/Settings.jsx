@@ -12,7 +12,7 @@ function Seetings() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const comment = localStorage.getItem('commentBody')
-    console.log(comment)
+  
 
     return (
         <>
