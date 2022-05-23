@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import Settings from './Settings'
+import Comment from './Comment'
+import { useForm } from "react-hook-form";
 
 function ListComments(props) {
 
@@ -68,9 +70,19 @@ function ListComments(props) {
 
 
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const onSubmit = data => {
+        fetch('http://localhost:3002/comment', {
+            method: 'POST',
+            headers: new Headers({ 'content-type': 'application/json' }),
+            body: JSON.stringify(data)
+        })       
+    };
+
+
     return (
         <>
-
             <Button variant="outline-success" onClick={handleShow}> <FontAwesomeIcon icon="message" /> </Button>
 
             <Modal show={show} onHide={handleClose}>
@@ -80,7 +92,7 @@ function ListComments(props) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={handleSubmit(onSubmit)} >
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Marie</Form.Label>

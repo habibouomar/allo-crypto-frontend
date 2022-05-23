@@ -8,13 +8,26 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 function Home() {
 
-    let [content, setContent] = useState([]);
+    let [listPost, setListPost] = useState([]);
 
     useEffect(() => {
+        fetch('http://localhost:3002/post')
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                setListPost(res.result)
+            })
+    }, [])
 
-
-    }, []);
-    
+    const onFinishPost = (resultJson) => {
+        console.log(resultJson);
+        fetch('http://localhost:3002/post')
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                setListPost(res.result)
+            })
+    }
     return (
         <div>
         <Header></Header>
@@ -27,10 +40,9 @@ function Home() {
             </div>
 
             <div className="row bloc2 position-sticky">
-               <TopUserLike></TopUserLike>
-               <TopUserComment></TopUserComment>
+                <TopUserLike></TopUserLike>
+                <TopUserComment></TopUserComment>
             </div>
-
         </div>
         </div>
 
