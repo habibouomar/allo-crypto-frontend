@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ListComments from './ListComments'
 import Settings from './Settings'
-import Like from "./Like";
+// import Like from "./Like";
 
 function Post() {
     const [postList, setList] = useState([]);
@@ -25,11 +25,21 @@ function Post() {
 
     const userId = localStorage.getItem('userId')
 
-    const setOne = ()=>{
-        if(counter>1){
-         setCounter(0)   
-         console.log(counter)
-        }
+    const setLike = (id)=>{
+        fetch('http://localhost:3002/post', {
+            method: 'PUT',
+            headers: new Headers({ "content-type": "application/json" }),
+            body: JSON.stringify({
+                likerId: userId,
+                filterId: id
+            })
+        }).then(result => result.json())
+            .then(json => {
+                console.log(json)
+            })
+    
+        console.log('UNDONE')
+    
     }
 
    
@@ -59,7 +69,7 @@ function Post() {
                                                     </blockquote>
                                                     <div className="pt-5">
                                                         <Button variant="outline-danger" onClick={() => {
-                                                            setFilterId(elem._id)
+                                                            setLike(elem._id)
                                                             setTrue(true)
                                                             setCounter(counter +1)
                                                         }}> <FontAwesomeIcon icon="heart" /> </Button>
@@ -89,7 +99,7 @@ function Post() {
             }
 
 
-            <Like filterId={filterId} likerId={userId} isTrue={isTrue} />
+            {/* <Like filterId={filterId} likerId={userId} isTrue={isTrue} /> */}
 
         </div>
 
