@@ -1,24 +1,27 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home';
-import Profil from '../pages/Profil';
-import Crypto from '../pages/Crypto';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "../pages/Home";
+import Profil from "../pages/Profil";
+import Crypto from "../pages/Crypto";
+import Signup from "../pages/Signup";
+import Login from "../pages/Login";
 
 export class Router extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <>
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
-                    <Route path="/profil" element={<Profil />} />
-                    <Route path="/cryptomonaie" element={<Crypto />} />
-                </Routes>
-            </>
-        )
-    }
+  render() {
+    return (
+      <>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profil" element={<Profil />} />
+          <Route path="/cryptomonaie" element={<Crypto />} />
+        </Routes>
+      </>
+    );
+  }
 }
