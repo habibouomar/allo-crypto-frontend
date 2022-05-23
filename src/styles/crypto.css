@@ -1,24 +1,90 @@
-.crypto {
+.price {
+    text-align: right;
+    width: 92%;
+    margin-top: 20px;
+}
+.container {
     display: flex;
     margin: auto;
-}
-
-.crypto p {
-    display: flex;
+    margin-left: 30px;
     align-items: center;
     font-size: 20px;
     height: 40px;
     margin-top: 20px;
-    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.crypto {
+    margin-right: 20px
 }
 
 .symbol {
     background-color: gold;
     padding: 10px;
     border-radius: 10px;
+    font-size: 15px;
 }
 
 .item {
+    margin-left: 30px;
     display: flex;
-    justify-content: center !important;
+}
+
+.right {
+    margin-left: auto;
+}
+
+.data {
+    margin-right: 30px;
+}
+
+.logo img {
+    width: 30px;
+    height: 30px;
+}
+
+.hour {
+    font-size: 15px;
+    background-color: red;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.main {
+    background-color: rgba(0, 0, 0, 0.881);
+    margin : 30px;
+    color: white;
+    border-radius: 10px;
+}
+
+.rank {
+    margin-left: 40px;
+    margin-top: 20px;
+    background-color: black;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.stats {
+    margin-top: 60px;
+    padding-bottom: 60px;
+}
+
+#cap {
+    border-right-style: solid;
+    border-color: grey;
+
+}
+
+.header {
+    border-bottom-style: solid;
+    border-color: grey;
+    padding-bottom: 20px;
+}
+
+.market {
+    font-size: 20px;
+    color: rgb(161, 159, 159);
+    font-weight: bold;
 }
