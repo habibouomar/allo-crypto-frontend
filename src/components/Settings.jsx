@@ -11,7 +11,8 @@ function Seetings() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    const comment = localStorage.getItem('commentBody')
+    console.log(comment)
 
     return (
         <>
@@ -26,7 +27,7 @@ function Seetings() {
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Edit content</Form.Label>
-                            <Form.Control as="textarea" rows={2}> contenue</Form.Control>
+                            <Form.Control as="textarea" value={comment}  rows={2}></Form.Control>
                         </Form.Group>
                     </Form>
                 </Modal.Body>

@@ -5,7 +5,7 @@ import TopUserLike from "../components/TopUserLike";
 import TopUserComment from "../components/TopUserComment";
 import '../styles/home.css';
 import { useState, useEffect } from "react";
-
+import Header from "../components/Header";
 function Home() {
 
     let [content, setContent] = useState([]);
@@ -16,15 +16,14 @@ function Home() {
     }, []);
     
     return (
+        <div>
+        <Header></Header>
         <div className="homeContainer container">
+           
             <div className="bloc1">
                 <ToPost></ToPost>
                 <Post></Post>
-                <Post></Post>
-                <Post></Post>
-                <Post></Post>
-                <Post></Post>
-                <Post></Post>
+               
             </div>
 
             <div className="row bloc2 position-sticky">
@@ -32,6 +31,7 @@ function Home() {
                <TopUserComment></TopUserComment>
             </div>
 
+        </div>
         </div>
 
     )

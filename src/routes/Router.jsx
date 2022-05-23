@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import Profil from '../pages/Profil';
 import Crypto from '../pages/Crypto';
+import Login from '../components/Login';
 
 export class Router extends React.Component {
 
@@ -14,7 +15,8 @@ export class Router extends React.Component {
         return (
             <>
                 <Routes>
-                    <Route path="/" element={<Home />}></Route>
+                    <Route path='/' element={<Login/>}/>
+                    <Route path="/home" element={<Home />}></Route>
                     <Route path="/profil" element={<Profil />} />
                     <Route path="/cryptomonaie" element={<Crypto />} />
                 </Routes>

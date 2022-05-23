@@ -6,12 +6,67 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import Settings from './Settings'
 
-function ListComments() {
+function ListComments(props) {
 
     const [show, setShow] = useState(false);
-
+    const [value, setValue] = useState('')
+    const [commentList, setComment] = useState([])
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const filterId = props.filterId;
+    const likerId = props.likerId;
+
+    const getVal = (e) => {
+        e.preventDefault();
+        setValue(e.target.value)
+        console.log(value)
+    }
+
+    const sender = (e) => {
+
+        fetch('http://localhost:3002/comment', {
+            method: 'POST',
+            headers: new Headers({ "content-type": "application/json" }),
+            body: JSON.stringify({
+                ownerID: likerId,
+                postID: filterId,
+                text: value
+            })
+        }).then(result => result.json())
+            .then(json => console.log(json))
+        localStorage.setItem('commentBody', value)
+        setValue('')
+    }
+    const checker = props.check;
+
+    useEffect(() => {
+        if(checker){
+
+            fetch('http://localhost:3002/comment/get', {
+                method: 'POST',
+                headers: new Headers({ "content-type": "application/json" }),
+                body: JSON.stringify({
+                    ownerID: likerId,
+                    postID: filterId,
+                })
+            })
+                .then(result => result.json())
+                .then(json => {
+                    setComment([json])
+                    console.log(json)
+                })
+        }else{
+            console.log('NOT YET')
+        }
+    }, [filterId])
+
+
+
+    console.log("not sent")
+
+
+
+
 
     return (
         <>
@@ -19,7 +74,7 @@ function ListComments() {
             <Button variant="outline-success" onClick={handleShow}> <FontAwesomeIcon icon="message" /> </Button>
 
             <Modal show={show} onHide={handleClose}>
-                
+
                 <Modal.Header>
                     <Modal.Title>Comments</Modal.Title>
                 </Modal.Header>
@@ -29,36 +84,44 @@ function ListComments() {
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Marie</Form.Label>
-                            <Form.Control as="textarea" rows={2} />
+                            <Form.Control as="textarea" rows={2} value={value} onChange={getVal} />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <div>
-                                <h4> Marc  <Settings /> </h4>
-                                <p>
-                                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                                    consectetur ac, vestibulum at eros.
-                                </p>
-                            </div>
+                        {
+                            commentList.map(comment => {
+                                console.log(comment, 'ACTION BASTARD')
+                                return (
+                                    <div>
+                                        {
+                                            comment.map(elem => {
+                                                console.log(elem.ownerID.userName, 'ITTITITITITITTIITTITITITIIT')
+                                                return (
 
-                            <div>
-                                <h4> Loic  <Settings /> </h4>
-                                <p>
-                                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                                    consectetur ac, vestibulum at eros.
-                                </p>
-                            </div>
 
-                        </Form.Group>
+                                                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <div>
+                                                            <h4>{elem.ownerID.userName}<Settings  /> </h4>
+                                                            <p>
+                                                               {elem.text}
+                                                            </p>
+                                                        </div>
+
+                                                    </Form.Group>
+                                                )
+                                            })
+                                        }
+                                    </div>
+
+                                )
+                            })
+                        }
 
                     </Form>
                 </Modal.Body>
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
-                    <Button variant="primary" onClick={handleClose}>Send</Button>
+                    <Button variant="primary" onClick={sender}>Send</Button>
                 </Modal.Footer>
             </Modal>
         </>
