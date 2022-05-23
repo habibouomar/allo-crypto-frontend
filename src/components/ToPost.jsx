@@ -14,7 +14,6 @@ function ToPost(props) {
         setBio(bio)
     })
 
-
     const [value,setValue] = useState('')
     const userId = localStorage.getItem('userId')
     
