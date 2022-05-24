@@ -13,6 +13,7 @@ function TopUserLike() {
             .then(res => res.json())
             .then(res => {
                 setTopUserLike(res)
+                console.log(res);
             })
     }, [])
 
