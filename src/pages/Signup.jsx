@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/signup.css";
 
@@ -38,21 +39,53 @@ const Signup = () => {
   };
 
   return (
-    <div className="div-form">
-      <form>
-        <div>
-          <input type="text" name="name" onChange={getData} />
-        </div>
-        <div>
-          <textarea name="bio" onChange={getBio} />
-        </div>
-        <div>
-          <input className="ii" type="text" name="img" onChange={getPicture} />
-        </div>
-        <div>
-          <button type="submit" onClick={poster}>
-            Signup
+    <div>
+      <form style={{ color: "gold", fontWeight: 700 }}>
+        <h1 style={{ textAlign: "center" }}> SIGNUP </h1>
+        <div
+          style={{ padding: "25px", marginLeft: "55vh", marginRight: "55vh" }}
+        >
+          <div class="mb-3">
+            <label>User Name</label>
+            <input
+              type="text"
+              onChange={getData}
+              class="form-control"
+              name="username"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label>Bio</label>
+            <textarea
+              type="text"
+              onChange={getBio}
+              class="form-control"
+              name="bio"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label>Picture</label>
+            <input
+              type="text"
+              onChange={getPicture}
+              class="form-control"
+              name="img"
+            />
+          </div>
+          <button type="submit" onClick={poster} class="btn btn-warning">
+            SIGNUP
           </button>
+          <br></br>
+          <div>
+            <button class="btn btn-dark">
+              <Link style={{ textDecoration: "none" }} to="/login">
+                {" "}
+                Se connecter{" "}
+              </Link>
+            </button>
+          </div>
         </div>
       </form>
     </div>
