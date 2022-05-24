@@ -1,62 +1,79 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../style/login.css";
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  const [user, setUser] = useState("");
-  const [bio, setBio] = useState("");
-  const [img, setImg] = useState("");
+    const [name,setName] = useState('')
+    const [bio,setBio] = useState('')
+    const [text,setText] = useState('')
+    const [errMsg,setErrMsg] = useState('')
 
-  const poster = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:3002/user", {
-      method: "POST",
-      headers: new Headers({ "content-type": "application/json" }),
-      body: JSON.stringify({
-        userName: user,
-        aboutMe: bio,
-        picture: img,
-      }),
-    })
-      .then((res) => res.json(res))
-      .then((json) => console.log(json));
-  };
+    const Navigate = useNavigate();
+    const nameChanger =(e)=>{
+        e.preventDefault();
+        setName(e.target.value)
+    }
+    
+    const bioChanger =(e)=>{
+        e.preventDefault();
+        setBio(e.target.value)
+    }
+    
+    const textChanger =(e)=>{
+        e.preventDefault();
+        setText(e.target.value)
+    
+    }
 
-  const getData = (e) => {
-    e.preventDefault();
-    setUser(e.target.value);
-  };
+    const poster=(e)=>{
+        e.preventDefault();
+        fetch('http://localhost:3002/user', {
+            method:'POST',
+            headers:new Headers({"content-type":"application/json"}),
+            body: JSON.stringify({
+                userName:name,
+                aboutMe:bio,
+                picture:text
+            })
+        }).then(result=>result.json())
+        .then(json=>{
+            if(json.Error === false){
+                setErrMsg('User Name Already exists')
+                Navigate('')
+            }else{
 
-  const getBio = (e) => {
-    e.preventDefault();
-    setBio(e.target.value);
-  };
+                console.log(json)
+                console.log(json.result.userName)
+                localStorage.setItem('userId', json.result._id)
+                localStorage.setItem('userName', json.result.userName)
+                localStorage.setItem('bio', json.result.aboutMe)
+                Navigate('/home')
+                setErrMsg('')
+            }
 
-  const getPicture = (e) => {
-    e.preventDefault();
-    setImg(e.target.value);
-  };
+           
+        
+        })
+    }
 
   return (
-    <div className="div-form">
-      <form>
-        <div>
-          <input type="text" name="name" onChange={getData} />
-        </div>
-        <div>
-          <textarea name="bio" onChange={getBio} />
-        </div>
-        <div>
-          <input className="ii" type="text" name="img" onChange={getPicture} />
-        </div>
-        <div>
-          <button type="submit" onClick={poster}>
-            Submit
-          </button>
-        </div>
-      </form>
+    <div>
+        <form action="">
+            <div>
+                <span style={{fonrSize:'20px',color:'black'}}>{errMsg}</span>
+                <input type="name"  onChange={nameChanger}/>
+            </div>
+            <div>
+                <textarea type="text" onChange={bioChanger}/>
+            </div>
+            <div>
+                <input type="text" onChange={textChanger}/>
+            </div>
+            <div>
+                <button onClick={poster}>submit</button>
+            </div>
+        </form>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

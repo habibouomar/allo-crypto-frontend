@@ -5,6 +5,7 @@ import TopUserLike from "../components/TopUserLike";
 import TopUserComment from "../components/TopUserComment";
 import '../styles/home.css';
 import { useState, useEffect } from "react";
+import Header from "../components/Header";
 
 function Home() {
 
@@ -14,7 +15,6 @@ function Home() {
         fetch('http://localhost:3002/post')
             .then(res => res.json())
             .then(res => {
-                console.log(res);
                 setListPost(res.result)
             })
     }, [])
@@ -24,31 +24,37 @@ function Home() {
         fetch('http://localhost:3002/post')
             .then(res => res.json())
             .then(res => {
-                console.log(res);
+                console.log("onfinishpost", res);
                 setListPost(res.result)
             })
     }
     return (
-        <div className="homeContainer container">
-            <div className="bloc1">
-                <ToPost onFinishPost={onFinishPost} ></ToPost>
+        <div>
 
-                <div>
-                    {listPost.map(post => {
+            <Header></Header>
+            <div className="homeContainer container">
 
-                        return (
-                             <Post content={post} ></Post>
-                        )
-                    })}
+                <div className="bloc1">
+
+                    <ToPost onFinishPost={onFinishPost}></ToPost>
+
+                    <div>
+                        {listPost.map(post => {
+                            return (
+                                <Post content={post} ></Post>
+                            )
+                        })}
+                    </div>
+
                 </div>
-                
-            </div>
 
-            <div className="row bloc2 position-sticky">
-                <TopUserLike></TopUserLike>
-                <TopUserComment></TopUserComment>
+                <div className="row bloc2 position-sticky">
+                    <TopUserLike></TopUserLike>
+                    <TopUserComment></TopUserComment>
+                </div>
             </div>
         </div>
+
     )
 }
 
