@@ -1,9 +1,23 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from 'react'
-import "../styles/crypto.css"
+import "../styles/crypto.css";
+import Post from "../components/Post";
+
 
 function Crypto() {
+
+    let [listPost, setListPost] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3002/post')
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                setListPost(res.result)
+            })
+    }, [])
+
     const [post, setPost] = useState([]);
     const [search, setSearch] = useState("bitcoin");
 
@@ -111,6 +125,14 @@ function Crypto() {
                                 </div>
                             </div>
                         </div>
+                        <div>
+                    {listPost.map(post => {
+
+                        return (
+                             <Post content={post} ></Post>
+                        )
+                    })}
+                </div>
                     </body>
                 )
             })}</h1>

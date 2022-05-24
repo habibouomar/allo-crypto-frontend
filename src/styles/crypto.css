@@ -130,3 +130,7 @@ span {
 .p {
     color: rgba(0, 0, 0, 0.881);
 }
+
+.comments {
+    background-color: black;
+}

@@ -1,7 +1,21 @@
-import React, { useState } from "react";
-import "../styles/profil.css"
+import "../styles/profil.css";
+import { useState, useEffect } from "react";
+import Post from "../components/Post";
+
+
 
 function Profil() {
+
+    let [listPost, setListPost] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3002/post')
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                setListPost(res.result)
+            })
+    }, [])
 
     const [state, setState] = useState({
         name: "",
@@ -13,7 +27,7 @@ function Profil() {
 
     const [bio, setBio] = useState('The world is mine')
     const [newBio, setNewBio] = useState('')
-    
+
     function handleChange(evt) {
         const value = evt.target.value;
         setNewName(value)
@@ -50,6 +64,15 @@ function Profil() {
                 <p>{bio}</p>
             </div>
 
+            <div>
+                {listPost.map(post => {
+
+                    return (
+                        <Post content={post} ></Post>
+                    )
+                })}
+            </div>
+
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -83,7 +106,7 @@ function Profil() {
                             <button type="button" className="btn btn-white border-dark" data-bs-dismiss="modal">Fermer</button>
                             <button type="button" className="btn btn-dark" onClick={modalSubmit}>Enregistrer</button>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
