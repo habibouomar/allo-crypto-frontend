@@ -12,6 +12,8 @@ function ListComments(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const userName = localStorage.getItem('userName');
+
     const [value, setValue] = useState('')
     const [commentList, setComment] = useState([])
 
@@ -77,7 +79,7 @@ function ListComments(props) {
                     <Form >
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Marie</Form.Label>
+                            <Form.Label>{userName}</Form.Label>
                             <Form.Control as="textarea" rows={2} value={value} onChange={getVal} />
                         </Form.Group>
 
