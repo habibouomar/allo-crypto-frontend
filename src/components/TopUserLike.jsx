@@ -2,64 +2,53 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
+import { useState, useEffect } from "react";
 
 function TopUserLike() {
-  return (
-    <div className="col-12 pt-5">
-      <Card>
-        <Card.Header>Top User Like</Card.Header>
 
-        <Card.Body>
-          <ListGroup as="ol" numbered>
-            <ListGroup.Item
-              as="li"
-              className="d-flex justify-content-between align-items-start"
-            >
-              <div className="ms-2 me-auto">
-                <div className="fw-bold">Yanisse</div>
-                <p>Salut ça baigne ? </p>
-              </div>
+    let [topUserLike, setTopUserLike] = useState([]);
 
-              <Badge bg="danger" pill>
-                {" "}
-                18{" "}
-              </Badge>
-            </ListGroup.Item>
+    useEffect(() => {
+        fetch('http://localhost:3002/user/toplikes')
+            .then(res => res.json())
+            .then(res => {
+                setTopUserLike(res)
+                console.log(res);
+            })
+    }, [])
 
-            <ListGroup.Item
-              as="li"
-              className="d-flex justify-content-between align-items-start"
-            >
-              <div className="ms-2 me-auto">
-                <div className="fw-bold">Julie</div>
-                <p>Binance compagny</p>
-              </div>
+    return (
 
-              <Badge bg="danger" pill>
-                {" "}
-                10{" "}
-              </Badge>
-            </ListGroup.Item>
+        <div className="col-12 pt-5">
+            <Card>
+                <Card.Header>Top User Like</Card.Header>
 
-            <ListGroup.Item
-              as="li"
-              className="d-flex justify-content-between align-items-start"
-            >
-              <div className="ms-2 me-auto">
-                <div className="fw-bold">Joel</div>
-                <p>Yeah</p>
-              </div>
+                <Card.Body>
+                    <ListGroup as="ol" numbered>
 
-              <Badge bg="danger" pill>
-                {" "}
-                6{" "}
-              </Badge>
-            </ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
-    </div>
-  );
+                        {topUserLike.map(list => {
+
+                            return (
+
+                                <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
+
+                                    <div className="ms-2 me-auto">
+                                        <div className="fw-bold">{list.userName}</div>
+                                        <p>{list.aboutMe}</p>
+                                    </div>
+
+                                    <Badge bg="danger" pill> {list.likesGlobal} </Badge>
+
+                                </ListGroup.Item>
+                            )
+                        })}
+
+                    </ListGroup>
+                </Card.Body>
+            </Card>
+        </div>
+
+    )
 }
 
 export default TopUserLike;

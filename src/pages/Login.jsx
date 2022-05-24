@@ -23,7 +23,7 @@ const Login = () => {
           localStorage.setItem("userName", userName);
           localStorage.setItem("bio", aboutMe);
 
-          Navigate("/");
+          Navigate("/home");
         } else {
           Navigate("/login");
         }
