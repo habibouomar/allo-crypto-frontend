@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ListComments from "./ListComments";
 import Settings from "./Settings";
-
+import { lenContext } from "../App";
 function Post(props) {
   const [filterId, setFilterId] = useState(null);
   const [check, setCheck] = useState(false);
