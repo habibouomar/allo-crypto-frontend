@@ -23,8 +23,16 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
-        Navigate("/login");
+        console.log(json.result.userName);
+        if (
+          json.result.userName &&
+          json.result.aboutMe &&
+          json.result.aboutMe
+        ) {
+          Navigate("/login");
+        } else {
+          Navigate("/");
+        }
       });
   };
 

@@ -66,7 +66,7 @@ const Login = () => {
               style={{ margin: "auto", display: "block" }}
               class="btn btn-dark"
             >
-              <Link style={{ textDecoration: "none" }} to="/signup">
+              <Link style={{ textDecoration: "none" }} to="/">
                 {" "}
                 S'inscrire{" "}
               </Link>
