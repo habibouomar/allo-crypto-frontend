@@ -1,9 +1,21 @@
-import React, { useId, useState } from "react";
+import React, {  useEffect , useState } from "react";
 import "../styles/profil.css"
 import { FaTwitter,FaLinkedinIn,FaInstagram } from "react-icons/fa";
 import Header from "../components/Header";
 
+
 function Profil() {
+
+    let [listPost, setListPost] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3002/post')
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                setListPost(res.result)
+            })
+    }, [])
 
     const [state, setState] = useState({
         name: "",
