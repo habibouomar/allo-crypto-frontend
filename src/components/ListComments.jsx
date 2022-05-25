@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import Settings from './Settings'
 import { lenContext } from "../App";
+
 function ListComments(props) {
     const {length,setLength,setRequest} = useContext(lenContext)
 
@@ -34,7 +35,7 @@ function ListComments(props) {
             body: JSON.stringify({
                 ownerID: likerId,
                 postID: filterId,
-                text: value
+                text: value,
             })
         }).then(commentAdded => commentAdded.json())
             .then( () => {
@@ -59,10 +60,6 @@ function ListComments(props) {
                 .then(json => {
                     setComment(json)
                     console.log("componentDiMount", json)
-                    // console.log("List comment Length",json.length)
-                    // setLength(json.length)
-                   
-                   
                 })
         } else {
 

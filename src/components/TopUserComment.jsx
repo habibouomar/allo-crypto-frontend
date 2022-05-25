@@ -2,55 +2,51 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
+import { useState, useEffect } from "react"; 
 
 function TopUserComment() {
+
+    let [topUserComment, setTopUserComment] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3002/user/topcomments')
+            .then(res => res.json())
+            .then(res => {
+                setTopUserComment(res)
+                console.log(res);
+            })
+    }, [])
+
     return (
 
         <div className="col-12 pt-5">
-            <Card>
-                <Card.Header>Top User Comment</Card.Header>
+        <Card>
+            <Card.Header>Top User Like</Card.Header>
 
-                <Card.Body>
-                    <ListGroup as="ol" numbered>
+            <Card.Body>
+                <ListGroup as="ol" numbered>
 
-                        <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
+                    {topUserComment.map(list => {
 
-                            <div className="ms-2 me-auto">
-                                <div className="fw-bold">Julie</div>
-                                <p>Binance compagny</p>
-                            </div>
+                        return (
 
-                            <Badge bg="success" pill> 10 </Badge>
+                            <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
 
-                        </ListGroup.Item>
+                                <div className="ms-2 me-auto">
+                                    <div className="fw-bold">{list.userName}</div>
+                                    <p>{list.aboutMe}</p>
+                                </div>
 
+                                <Badge bg="danger" pill> {list.commentsGlobal} </Badge>
 
-                        <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
+                            </ListGroup.Item>
+                        )
+                    })}
 
-                            <div className="ms-2 me-auto">
-                                <div className="fw-bold">Joel</div>
-                                <p>Yeah</p>
-                            </div>
-
-                            <Badge bg="success" pill> 7 </Badge>
-
-                        </ListGroup.Item>
-
-                        <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-
-                            <div className="ms-2 me-auto">
-                                <div className="fw-bold">Marc</div>
-                                <p>The world is mine</p>
-                            </div>
-
-                            <Badge bg="success" pill> 1 </Badge>
-
-                        </ListGroup.Item>
-
-                    </ListGroup>
-                </Card.Body>
-            </Card>
-        </div>
+                </ListGroup>
+            </Card.Body>
+        </Card>
+    </div>
 
     )
 }
