@@ -1,12 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import Settings from './Settings'
-
+import { lenContext } from "../App";
 function ListComments(props) {
+    const {length,setLength,setRequest} = useContext(lenContext)
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -51,12 +52,15 @@ function ListComments(props) {
 
     useEffect(() => {
         if (checker) {
-
             fetch(`http://localhost:3002/comment/${filterId}`)
                 .then(result => result.json())
                 .then(json => {
                     setComment(json)
                     console.log("componentDiMount", json)
+                    // console.log("List comment Length",json.length)
+                    // setLength(json.length)
+                   
+                   
                 })
         } else {
 
@@ -84,6 +88,8 @@ function ListComments(props) {
                         {
                             commentList.map(elem => {
                                 console.log('elem', elem);
+                                console.log("LENGTH",commentList.length)
+                                props.checkit(commentList.length)
                                 return (
 
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

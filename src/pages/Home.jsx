@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ToPost from "../components/ToPost";
 import Post from "../components/Post";
 import TopUserLike from "../components/TopUserLike";
@@ -6,16 +6,17 @@ import TopUserComment from "../components/TopUserComment";
 import '../styles/home.css';
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
-
+import { lenContext } from "../App";
 function Home() {
-
+    // const {func,request} = useContext(lenContext)
     let [listPost, setListPost] = useState([]);
-
+    
     useEffect(() => {
         fetch('http://localhost:3002/post')
             .then(res => res.json())
             .then(res => {
                 setListPost(res.result)
+              
             })
     }, [])
 
@@ -28,6 +29,16 @@ function Home() {
                 setListPost(res.result)
             })
     }
+
+    const likeBar =(ids,likers)=>{
+        fetch(`http://localhost:3002/post/${ids}`)
+        .then(res => res.json())
+        .then(result => {
+            console.log("oOOOOOOOOO",result[0].likes);
+            return likers = result[0].likes.length
+        })
+    }
+
     return (
         <div>
 
@@ -40,8 +51,9 @@ function Home() {
 
                     <div>
                         {listPost.map(post => {
+                            console.log("POOOOOOOSOS",post)
                             return (
-                                <Post content={post} ></Post>
+                                <Post likeFunc={onFinishPost} content={post} ></Post>
                             )
                         })}
                     </div>
@@ -54,7 +66,7 @@ function Home() {
                 </div>
             </div>
         </div>
-
+    
     )
 }
 

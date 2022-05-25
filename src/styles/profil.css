@@ -6,32 +6,60 @@
     padding-top: 220px;
 }
 
-.background-photo img {
-    margin-top: -70px;
-    margin-left: 40px;
-    border-style: solid;
-    border-color: white;
-    border-width: 2px
-}
-.background-photo button{
-    float: right;
-    margin-right: 35px;
-    margin-top: -20px;
-}
-.username {
-    padding-top: 70px;
-    text-align: center
+.main-div{
+    padding: 0 10%;
 }
 
-.user {
-    width: 220px;
-}
-.modal-header{
-    display: block;
+.image{
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    top: 21%;
+    left: 12%;
+    border: 1px solid #646464;
+    background-color: white;
+    padding: 2px;
 }
 
-.bio {
-    margin-left: 40px;
+.profile-content{
+    background-color: purple;
+    height: 23vh;
+
+}
+
+.name-div{
+    margin-left: 215px;
+    padding-top: 30px;
+    height: inherit;
+}
+
+.first-span{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.second-span{
     font-size: 20px;
+    /* font-weight: lighter; */
 }
 
+.btns-div{
+    margin-top: -40px;
+}
+
+.btns-div button{
+    width: 131.03px;
+    border: none;
+    height: 40px;
+}
+
+.icons-div{
+    position: absolute;
+    left: 60%;
+    top:33%;
+}
+
+.icons{
+    width: 150px;
+    font-size: 30px;
+}
