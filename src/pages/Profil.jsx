@@ -1,7 +1,8 @@
 import React, { useId, useState } from "react";
 import "../styles/profil.css"
 import { FaTwitter,FaLinkedinIn,FaInstagram } from "react-icons/fa";
-// import { post } from "../../../Allo_crypto/Router/post.router";
+import Header from "../components/Header";
+
 function Profil() {
 
     const [state, setState] = useState({
@@ -20,7 +21,7 @@ function Profil() {
     const bio = localStorage.getItem('bio')
     const userId = localStorage.getItem('userId')
     const [newBio, setNewBio] = useState('')
-// console.log(userId,'USERID')
+
     function handleChange(evt) {
         const value = evt.target.value;
         setNewName(value)
@@ -81,9 +82,8 @@ function Profil() {
 
     return (
         <div className="main-div">
-            {
-                // comments.map(comment=)
-            }
+             <Header></Header>
+           
             <div className="background-photo">
                 <img src="https://picsum.photos/130/130?image=1027" className="image" alt="..." />
             </div>

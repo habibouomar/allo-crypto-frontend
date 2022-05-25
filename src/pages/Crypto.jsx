@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from 'react'
 import "../styles/crypto.css"
+import Header from "../components/Header";
 
 function Crypto() {
     const [post, setPost] = useState([]);
@@ -41,6 +42,7 @@ function Crypto() {
 
     return (
         <div>
+             <Header></Header>
             <form onSubmit={submit}>
                 <input className="searchCrypto"
                     type="text"

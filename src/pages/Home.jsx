@@ -6,6 +6,8 @@ import TopUserComment from "../components/TopUserComment";
 import '../styles/home.css';
 import { useState, useEffect } from "react";
 import { lenContext } from "../App";
+import Header from "../components/Header";
+
 function Home() {
     // const {func,request} = useContext(lenContext)
     let [listPost, setListPost] = useState([]);
@@ -39,6 +41,7 @@ function Home() {
 
     return (
         <div>
+             <Header></Header>
             <div className="homeContainer container">
 
                 <div className="bloc1">
