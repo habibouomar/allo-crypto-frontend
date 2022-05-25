@@ -1,59 +1,48 @@
-import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/signup.css";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const Signup = () => {
-  const [user, setUser] = useState("");
-  const [bio, setBio] = useState("");
-  const [img, setImg] = useState("");
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    formState: { errors },
+  } = useForm();
 
+  const [userError, setUserError] = useState(false);
   const Navigate = useNavigate();
 
-  const poster = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
     fetch("http://localhost:3002/user", {
       method: "POST",
       headers: new Headers({ "content-type": "application/json" }),
       body: JSON.stringify({
-        userName: user,
-        aboutMe: bio,
-        picture: img,
+        userName: data.username,
+        aboutMe: data.bio,
+        picture: data.img,
       }),
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json.result.userName);
-        if (
-          json.result.userName &&
-          json.result.aboutMe &&
-          json.result.aboutMe
-        ) {
-          Navigate("/login");
-        } else {
+        if (json.Error === false) {
           Navigate("/");
+          setUserError(true);
+        } else {
+          Navigate("/login");
+          console.log(json);
         }
       });
   };
 
-  const getData = (e) => {
-    e.preventDefault();
-    setUser(e.target.value);
-  };
-
-  const getBio = (e) => {
-    e.preventDefault();
-    setBio(e.target.value);
-  };
-
-  const getPicture = (e) => {
-    e.preventDefault();
-    setImg(e.target.value);
-  };
-
   return (
     <div>
-      <form style={{ color: "gold", fontWeight: 700 }}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        style={{ color: "gold", fontWeight: 700 }}
+      >
         <h1 style={{ paddingTop: "13vh", textAlign: "center" }}> SIGNUP </h1>
         <div
           style={{ padding: "25px", marginLeft: "55vh", marginRight: "55vh" }}
@@ -61,41 +50,59 @@ const Signup = () => {
           <div class="mb-3">
             <label>User Name</label>
             <input
+              {...register("username", { required: true })}
+              placeholder="Username please"
               type="text"
-              onChange={getData}
               class="form-control"
               name="username"
             />
+            {errors.username && (
+              <span class="btn btn-dark">Username required</span>
+            )}
+            {userError === true && (
+              <span class="btn btn-dark">Username already exists</span>
+            )}
           </div>
 
           <div class="mb-3">
             <label>Bio</label>
             <textarea
+              {...register("bio", { required: true })}
+              placeholder="About you please"
               type="text"
-              onChange={getBio}
               class="form-control"
               name="bio"
             />
+            {errors.bio && (
+              <span class="btn btn-dark">
+                Please give an overview about yourself
+              </span>
+            )}
           </div>
 
           <div class="mb-3">
             <label>Picture</label>
             <input
+              {...register("img", { required: true })}
+              placeholder="profile picture please"
               type="text"
-              onChange={getPicture}
               class="form-control"
               name="img"
             />
+            {errors.img && (
+              <span class="btn btn-dark">Please insert a profile picture</span>
+            )}
           </div>
           <button
             style={{ margin: "auto", display: "block" }}
             type="submit"
-            onClick={poster}
             class="btn btn-warning"
           >
-            SIGNUP
+            CONFIRM
           </button>
-          <br></br>
+
+          <br />
+
           <div>
             <button
               style={{ margin: "auto", display: "block" }}
