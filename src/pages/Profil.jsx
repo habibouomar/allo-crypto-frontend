@@ -1,6 +1,11 @@
 import "../styles/profil.css";
 import { useState, useEffect } from "react";
 import Post from "../components/Post";
+import TopCrypto from "../components/TopCrypto";
+import axios from "axios";
+
+
+
 
 
 
@@ -64,13 +69,16 @@ function Profil() {
                 <p>{bio}</p>
             </div>
 
-            <div>
-                {listPost.map(post => {
+            <div className="homeContainer container">
 
-                    return (
-                        <Post content={post} ></Post>
-                    )
-                })}
+                <div className="bloc1">
+
+
+
+
+                </div>
+
+
             </div>
 
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,6 +118,7 @@ function Profil() {
                     </div>
                 </div>
             </div>
+
 
         </body>
     )

@@ -68,12 +68,12 @@ function Crypto() {
                     <body>
                         <div className="main">
                             <div className="header">
-                                <div className="price">Current price {element.name} ({element.symbol})</div>
+                                <div className="price">Current price {element?.name} ({element?.symbol})</div>
                                 <div className="container">
-                                    <div className="crypto logo"><img src={element.image.small} /></div>
-                                    <div className="crypto name">{element.name}</div>
-                                    <div className="crypto symbol">{element.symbol}</div>
-                                    <div className="data right">€{element.market_data.current_price.eur}</div>
+                                    <div className="crypto logo"><img src={element?.image?.small} /></div>
+                                    <div className="crypto name">{element?.name}</div>
+                                    <div className="crypto symbol">{element?.symbol}</div>
+                                    <div className="data right">€{element?.market_data?.current_price?.eur}</div>
                                     {
                                         element?.market_data?.price_change_percentage_1h_in_currency?.eur > 0 ?
                                             <div className="data hour2">{element?.market_data?.price_change_percentage_1h_in_currency?.eur?.toFixed(2)}%</div>
@@ -82,7 +82,7 @@ function Crypto() {
                                     }
                                 </div>
                                 <div className="numbers">
-                                    <div className="rank">rank: {element.market_cap_rank}</div>
+                                    <div className="rank">rank: {element?.market_cap_rank}</div>
                                     {/* <div className="pourcent">{element.market_data.price_change_percentage_7d}%</div> */}
                                     {/* <div className="pourcent">{element.market_data.market_cap.eur} €</div> */}
                                 </div>
@@ -93,12 +93,12 @@ function Crypto() {
                                         <div id="cap">
                                             <div class="p-4">
                                                 <p className="market">cap market</p>
-                                                <p>€{element.market_data.market_cap.eur}</p>
+                                                <p>€{element?.market_data?.market_cap?.eur}</p>
                                                 {
-                                                    element.market_data.market_cap_change_percentage_24h > 0 ?
-                                                        <div className="datas hours2">{element.market_data.market_cap_change_percentage_24h.toFixed(2)}%</div>
+                                                    element?.market_data?.market_cap_change_percentage_24h > 0 ?
+                                                        <div className="datas hours2">{element?.market_data?.market_cap_change_percentage_24h?.toFixed(2)}%</div>
                                                         :
-                                                        <div className="datas hours">{element.market_data.market_cap_change_percentage_24h.toFixed(2)}%</div>
+                                                        <div className="datas hours">{element?.market_data?.market_cap_change_percentage_24h?.toFixed(2)}%</div>
                                                 }
                                             </div>
                                         </div>
@@ -107,7 +107,7 @@ function Crypto() {
                                         <div id="mid">
                                             <div class="p-4">
                                                 <p className="market">Lowest rate <span>24h</span></p>
-                                                <p>€{element.market_data.low_24h.eur}</p>
+                                                <p>€{element?.market_data?.low_24h?.eur}</p>
                                                 <p className="p">%</p>
                                             </div>
                                         </div>
@@ -116,7 +116,7 @@ function Crypto() {
                                         <div id="circ">
                                             <div class="p-4">
                                                 <p className="market">highest rate <span>24h</span></p>
-                                                <p>€{element.market_data.high_24h.eur}</p>
+                                                <p>€{element?.market_data?.high_24h?.eur}</p>
                                                 {/* <p>{element.market_data.market_cap_change_percentage_24h}%</p> */}
                                             </div>
                                         </div>
@@ -126,13 +126,13 @@ function Crypto() {
                             </div>
                         </div>
                         <div>
-                    {listPost.map(post => {
+                            {listPost.map(post => {
 
-                        return (
-                             <Post content={post} ></Post>
-                        )
-                    })}
-                </div>
+                                return (
+                                    <Post content={post} ></Post>
+                                )
+                            })}
+                        </div>
                     </body>
                 )
             })}</h1>
