@@ -5,7 +5,6 @@ import TopUserLike from "../components/TopUserLike";
 import TopUserComment from "../components/TopUserComment";
 import '../styles/home.css';
 import { useState, useEffect } from "react";
-import Header from "../components/Header";
 import { lenContext } from "../App";
 function Home() {
     // const {func,request} = useContext(lenContext)
@@ -34,15 +33,12 @@ function Home() {
         fetch(`http://localhost:3002/post/${ids}`)
         .then(res => res.json())
         .then(result => {
-            console.log("oOOOOOOOOO",result[0].likes);
             return likers = result[0].likes.length
         })
     }
 
     return (
         <div>
-
-            <Header></Header>
             <div className="homeContainer container">
 
                 <div className="bloc1">
@@ -51,7 +47,6 @@ function Home() {
 
                     <div>
                         {listPost.map(post => {
-                            console.log("POOOOOOOSOS",post)
                             return (
                                 <Post likeFunc={onFinishPost} content={post} ></Post>
                             )

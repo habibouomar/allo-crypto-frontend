@@ -6,43 +6,45 @@ import ListComments from "./ListComments";
 import Settings from "./Settings";
 
 function Post(props) {
+
   const [filterId, setFilterId] = useState(null);
   const [check, setCheck] = useState(false);
   const userId = localStorage.getItem('userId')
-  const [likeCount,setLikeCount] = useState('')
-  const setLike = (id)=>{
+  const [likeCount, setLikeCount] = useState('')
+
+  const setLike = (id) => {
+
     fetch('http://localhost:3002/post', {
-        method: 'PUT',
-        headers: new Headers({ "content-type": "application/json" }),
-        body: JSON.stringify({
-            likerId: userId,
-            filterId: id
-        })
+      method: 'PUT',
+      headers: new Headers({ "content-type": "application/json" }),
+      body: JSON.stringify({
+        likerId: userId,
+        filterId: id,
+        ownerID: props.content.ownerID._id
+      })
     }).then(result => result.json())
-        .then(json => {
-            console.log(json)
-           props.likeFunc(json)
-        //    console.log(num)
-           })
+      .then(json => {
+        console.log(json)
+        props.likeFunc(json)
+      })
   }
+
+  const shareContent = (posterID, postID) => {
   
-  const shareContent = (posterID,postID)=>{
-    // e.preventDefault();
-    fetch('http://localhost:3002/share',{
-        method:'POST',
-        headers:new Headers({"content-type":"application/json"}),
-        body:JSON.stringify({
-            posterID:posterID,
-            postID:postID
-        })
-    }).then(result=>result.json())
-        .then(json=>console.log(json))
-}
+    fetch('http://localhost:3002/share', {
+      method: 'POST',
+      headers: new Headers({ "content-type": "application/json" }),
+      body: JSON.stringify({
+        posterID: posterID,
+        postID: postID
+      })
+    }).then(result => result.json())
+      .then(json => console.log(json))
+  }
 
-
-const checkit =(length)=>{
-   return setLikeCount(length)
-}
+  const checkit = (length) => {
+    return setLikeCount(length)
+  }
 
   return (
     <div className="row">
@@ -95,8 +97,9 @@ const checkit =(length)=>{
               </Button>{" "}
               <Button variant="outline-secondary">
                 {" "}
-                <FontAwesomeIcon icon="share" onClick={()=>{
-                                shareContent(userId,props.content._id)}} />{" "}
+                <FontAwesomeIcon icon="share" onClick={() => {
+                  shareContent(userId, props.content._id)
+                }} />{" "}
               </Button>{" "}
               <div style={{}}>
                 <span style={{ backgroundColor: "pink" }}>
