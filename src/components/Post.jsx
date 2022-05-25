@@ -7,26 +7,42 @@ import Settings from "./Settings";
 
 function Post(props) {
   const [filterId, setFilterId] = useState(null);
-  const [isTrue, setTrue] = useState(false);
   const [check, setCheck] = useState(false);
-  let [counter, setCounter] = useState(0);
+  const userId = localStorage.getItem('userId')
+  const [likeCount,setLikeCount] = useState('')
+  const setLike = (id)=>{
+    fetch('http://localhost:3002/post', {
+        method: 'PUT',
+        headers: new Headers({ "content-type": "application/json" }),
+        body: JSON.stringify({
+            likerId: userId,
+            filterId: id
+        })
+    }).then(result => result.json())
+        .then(json => {
+            console.log(json)
+           props.likeFunc(json)
+        //    console.log(num)
+           })
+  }
+  
+  const shareContent = (posterID,postID)=>{
+    // e.preventDefault();
+    fetch('http://localhost:3002/share',{
+        method:'POST',
+        headers:new Headers({"content-type":"application/json"}),
+        body:JSON.stringify({
+            posterID:posterID,
+            postID:postID
+        })
+    }).then(result=>result.json())
+        .then(json=>console.log(json))
+}
 
-  const userId = localStorage.getItem("userId");
 
-  const setLike = (id) => {
-    fetch("http://localhost:3002/post", {
-      method: "PUT",
-      headers: new Headers({ "content-type": "application/json" }),
-      body: JSON.stringify({
-        likerId: userId,
-        filterId: id,
-      }),
-    })
-      .then((result) => result.json())
-      .then((json) => {
-        console.log(json);
-      });
-  };
+const checkit =(length)=>{
+   return setLikeCount(length)
+}
 
   return (
     <div className="row">
@@ -49,8 +65,7 @@ function Post(props) {
                 variant="outline-danger"
                 onClick={() => {
                   setLike(props.content._id);
-                  setTrue(true);
-                  setCounter(counter + 1);
+                  checkit()
                 }}
               >
                 {" "}
@@ -71,6 +86,7 @@ function Post(props) {
                   filterId={filterId}
                   likerId={userId}
                   check={check}
+                  checkit={checkit}
                 />
               </button>
               <Button variant="outline-dark">
@@ -79,12 +95,14 @@ function Post(props) {
               </Button>{" "}
               <Button variant="outline-secondary">
                 {" "}
-                <FontAwesomeIcon icon="share" />{" "}
+                <FontAwesomeIcon icon="share" onClick={()=>{
+                                shareContent(userId,props.content._id)}} />{" "}
               </Button>{" "}
               <div style={{}}>
                 <span style={{ backgroundColor: "pink" }}>
                   {props.content.likes.length}
                 </span>
+                <span style={{ backgroundColor: 'orange' }}>{likeCount}</span>
               </div>
             </div>
           </Card.Body>
