@@ -10,6 +10,17 @@ import Settings from "../components/Settings";
 // import { post } from "../../../Allo_crypto/Router/post.router";
 function Profil() {
 
+    let [listPost, setListPost] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3002/post')
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                setListPost(res.result)
+            })
+    }, [])
+
     const [state, setState] = useState({
         name: "",
         bio: ""

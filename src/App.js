@@ -22,7 +22,7 @@ function App() {
     <div className="App">
   < lenContext.Provider value={lenVar}>
 
-      {/* <Header></Header> */}
+      <Header></Header>
       <Router/>
    </lenContext.Provider>
     </div>
