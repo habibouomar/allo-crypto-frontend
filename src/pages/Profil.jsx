@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ListComments from "../components/ListComments";
 import Settings from "../components/Settings";
 // import { post } from "../../../Allo_crypto/Router/post.router";
+import TopCrypto from "../components/TopCrypto";
 function Profil() {
 
     let [listPost, setListPost] = useState([]);
@@ -32,8 +33,7 @@ function Profil() {
     const [commentBorder, setCBorder] = useState('2px solid white')
     const [shareBorder, setShBorder] = useState('2px solid white')
     const [posts, setPost] = useState([])
-    const [comments, setComment] = useState([])
-    const [shares, setShares] = useState([])
+    const [currentUser, setUser] = useState('')
     const bio = localStorage.getItem('bio')
     const userId = localStorage.getItem('userId')
     const [newBio, setNewBio] = useState('')
@@ -137,7 +137,7 @@ function Profil() {
             //    console.log(num)
                })
       }
-
+      const userName = localStorage.getItem('userName')
 
     return (
         <div className="main-div">
@@ -147,13 +147,13 @@ function Profil() {
             <div className="profile-content">
                 <div className="name-div">
                     <div>
-                        <span className="first-span">{name}</span>
+                        <span className="first-span">{userName}</span>
                     </div>
                     <div>
                         <span className="second-span">{bio}</span>
                     </div>
                     <div className="icons-div">
-                        <FaTwitter className="icons" /><FaLinkedinIn className="icons" /><FaInstagram className="icons" />
+                        <FaTwitter className="icons" style={{color:'#1DA1F2'}}/><FaLinkedinIn className="icons" style={{color:'#0072b1'}} /><FaInstagram className="icons" style={{color:'#8a3ab9'}} />
                     </div>
                 </div>
                 <div className="btns-div">
@@ -166,9 +166,11 @@ function Profil() {
                 <div className="post-profil">
                     {
                         posts.map(post => {
-                            console.log('ISLAND IN THE SUN', post)
+                            console.log('ISLAND IN THE SUN', post.postID?.ownerID.userName)
+                            // setUser(post.posterID?.userName)
                             return (
                                 <div className="col-11 pt-3 pb-1">
+            
                                     <Card>
                                        {current === 'share'? <Card.Header>
                                             {post.posterID.userName}
@@ -179,10 +181,10 @@ function Profil() {
                                         </Card.Header>}
                                         <Card.Body>
                                             <blockquote className="blockquote mb-0">
-                                               {current === 'share'? <span style={{fontSize:'20px',fontWeight:'bold'}}>{post.postID.ownerID.userName} <span style={{fontSize:'10px',fontWeight:'lighter', color:'violet'}}>created this post on {post.postID.createdAt}</span></span> : <p></p> }
-                                               {current === 'share'? <p>{post.postID.text}</p>:<p>{post.text }</p>}
+                                               {current === 'share'? <span style={{fontSize:'20px',fontWeight:'bold'}}>{post.postID?.ownerID.userName} <span style={{fontSize:'10px',fontWeight:'lighter', color:'violet'}}>created this post on {post.postID?.createdAt}</span></span> : <p></p> }
+                                               {current === 'share'? <p>{post.postID?.text}</p>:<p>{post.text }</p>}
                                                {current === 'comment'? <footer className="blockquote-footer">
-                                                    Commented on { post.postID.ownerID.userName+"'s "}post
+                                                    Commented on { post.postID?.ownerID.userName+"'s "}post
                                                     <cite title="Source Title">{ }</cite>
                                                 </footer>: current === 'post' ?<footer className="blockquote-footer">
                                                         Posted-{post.createdAt}
@@ -233,7 +235,7 @@ function Profil() {
                                                 </Button>{" "}
                                                 <div style={{}}>
                                                     <span style={{ backgroundColor: "pink",visibility:opacity }}>
-                                                        {current === "share" ? post.postID.likes.length :current === 'post' ? post.likes.length : <p></p> }
+                                                        {current === "share" ? post.postID?.likes.length :current === 'post' ? post.likes?.length : <p></p> }
                                                     </span>
                                                     <span style={{ backgroundColor: 'orange',visibility:opacity}}>{ }</span>
                                                 </div>
@@ -251,6 +253,7 @@ function Profil() {
                 <div className="share-profile">
 
                 </div>
+                    <TopCrypto/>
             </div>
         </div>
     )

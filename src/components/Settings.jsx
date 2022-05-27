@@ -6,11 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 
 
-function Seetings() {
+function Seetings(props) {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [value,setValue] = useState(props.value)
+    const changer = e =>{
+        e.preventDefault()
+        setValue(e.target.value)
+    }
     const comment = localStorage.getItem('commentBody')
   
 
@@ -27,7 +32,7 @@ function Seetings() {
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Edit content</Form.Label>
-                            <Form.Control as="textarea" value={comment}  rows={2}></Form.Control>
+                            <Form.Control as="textarea" value={value} onChange={changer} rows={2}></Form.Control>
                         </Form.Group>
                     </Form>
                 </Modal.Body>

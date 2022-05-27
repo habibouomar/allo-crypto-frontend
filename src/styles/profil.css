@@ -1,8 +1,7 @@
 .background-photo {
-    background: #FFFFFF;
-    background: -moz-linear-gradient(top, #FFFFFF 0%, #000000 66%, #000000 100%);
-    background: -webkit-linear-gradient(top, #FFFFFF 0%, #000000 66%, #000000 100%);
-    background: linear-gradient(to bottom, #FFFFFF 0%, #000000 66%, #000000 100%);    
+  background-image: url(./images/wall.jpg);
+  background-size: cover;
+  background-position: center;
     padding-top: 220px;
 }
 
@@ -14,7 +13,7 @@
     width: 160px;
     height: 160px;
     position: absolute;
-    top: 21%;
+    top: 30%;
     left: 12%;
     border: 1px solid #646464;
     background-color: white;
@@ -22,7 +21,7 @@
 }
 
 .profile-content{
-    background-color: purple;
+    background-color: whitesmoke;
     height: 23vh;
 
 }
@@ -56,10 +55,30 @@
 .icons-div{
     position: absolute;
     left: 60%;
-    top:33%;
+    top:43%;
 }
 
 .icons{
     width: 150px;
     font-size: 30px;
+}
+
+.feed-div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-profil{
+    width: 60% ;
+}
+
+.topCrypto-img{
+    width: 30px;
+    height: 30px;
+    margin-right:20px ;
+}
+
+.App{
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
 }
