@@ -45,7 +45,7 @@ function Post(props) {
   const checkit = (length) => {
     return setLikeCount(length)
   }
-  // console.log("PROPSPROPSPROPSs",props.content)
+
 
   return (
     <div className="row">
@@ -53,7 +53,7 @@ function Post(props) {
         <Card>
           <Card.Header>
             {props.content.ownerID.userName}
-            <Settings />{" "}
+            <Settings value={props.content.text}/>{" "}
           </Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">

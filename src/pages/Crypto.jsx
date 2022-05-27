@@ -1,21 +1,21 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from 'react'
-import "../styles/crypto.css"
-import Header from "../components/Header";
+import "../styles/crypto.css";
+import Post from "../components/Post";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Settings from "../components/Settings";
+import { lenContext } from "../App";
+
+
 
 function Crypto() {
 
     let [listPost, setListPost] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:3002/post')
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-                setListPost(res.result)
-            })
-    }, [])
+   
 
     const [post, setPost] = useState([]);
     const [search, setSearch] = useState("bitcoin");
@@ -23,13 +23,18 @@ function Crypto() {
 
 
     useEffect(() => {
-  
+     
         axios.get(`https://api.coingecko.com/api/v3/coins/${search}`).then((response) => {
             setPost([response.data]);
             console.log(response.data)
          
         });
-
+        fetch('http://localhost:3002/crypto')
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+            setListPost([json])
+        })
     }, [search]);
 
 
@@ -49,7 +54,7 @@ function Crypto() {
 
     return (
         <div>
-             <Header></Header>
+          
             <form onSubmit={submit}>
                 <input className="searchCrypto"
                     type="text"
@@ -78,8 +83,6 @@ function Crypto() {
                                 </div>
                                 <div className="numbers">
                                     <div className="rank">rank: {element?.market_cap_rank}</div>
-                                    {/* <div className="pourcent">{element.market_data.price_change_percentage_7d}%</div> */}
-                                    {/* <div className="pourcent">{element.market_data.market_cap.eur} €</div> */}
                                 </div>
                             </div>
                             <div class="stats">
@@ -112,7 +115,6 @@ function Crypto() {
                                             <div class="p-4">
                                                 <p className="market">highest rate <span className="span-jsx">24h</span></p>
                                                 <p>€{element?.market_data?.high_24h?.eur}</p>
-                                                {/* <p>{element.market_data.market_cap_change_percentage_24h}%</p> */}
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +122,50 @@ function Crypto() {
                                 </div>
                             </div>
                         </div>
-        
+                        <div>
+                        <div className="row">
+                            {listPost.map((post,index)=>{
+                                return(
+                                    <div className="col-11 pt-3 pb-1">
+                                        {
+
+                               post.map(content=>{
+                                   console.log(content.text)
+                                   return(
+                                    <Card>
+                                    <Card.Header>
+                                        {content.ownerID.userName}
+                                        <Settings />{" "}
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <blockquote className="blockquote mb-0">
+                                        <p>{content.text}</p>
+                                        <footer className="blockquote-footer">
+                                            Posted {content.createdAt}
+                                            <cite title="Source Title">{}</cite>
+                                        </footer>
+                                        </blockquote>
+                                        <div className="pt-5">
+                                        <div style={{}}>
+                                            <span style={{ backgroundColor: "pink" }}>
+                                            
+                                            </span>
+                                            <span style={{ backgroundColor: 'orange' }}>{}</span>
+                                        </div>
+                                        </div>
+                                    </Card.Body>
+                                    </Card>
+                                   )
+                               })
+                                        }
+                                    </div>
+                                )
+                                    
+                                
+                            })
+                           }
+                    </div>
+                    </div>
                     </body>
                 )
             })}</h1>

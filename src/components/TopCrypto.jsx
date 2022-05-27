@@ -5,26 +5,22 @@ import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { useState, useEffect } from 'react'
 
-
-
 function TopCrypto() {
 
     const [post, setPost] = useState([]);
 
-
     useEffect(() => {
-
 
         axios.get('https://api.coingecko.com/api/v3/search/trending').then((response) => {
             setPost(response.data.coins);
             console.log(response.data.coins)
 
         });
-        // }
     }, []);
+
     return (
 
-        <div className="col-12 pt-5">
+        <div className="col-5 pt-3">
             <Card>
                 <Card.Header>Top Crypto</Card.Header>
 
@@ -35,13 +31,12 @@ function TopCrypto() {
                             {post.map((element) => {
                                 return (
                                     <ListGroup.Item as="li" >
-                                    <img src={element?.item?.small} width="10px" />
+                                    <img src={element?.item?.small} className="topCrypto-img" />
                                     {element.item.symbol}
                         </ListGroup.Item>
 
                                 )
                             })}
-
 
                     </ListGroup>
                 </Card.Body>
