@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ListComments from "./ListComments";
 import Settings from "./Settings";
-
+import { lenContext } from "../App";
 function Post(props) {
 
   const [filterId, setFilterId] = useState(null);
@@ -45,6 +45,7 @@ function Post(props) {
   const checkit = (length) => {
     return setLikeCount(length)
   }
+  // console.log("PROPSPROPSPROPSs",props.content)
 
   return (
     <div className="row">
@@ -91,10 +92,7 @@ function Post(props) {
                   checkit={checkit}
                 />
               </button>
-              <Button variant="outline-dark">
-                {" "}
-                <FontAwesomeIcon icon="trash" />{" "}
-              </Button>{" "}
+             
               <Button variant="outline-secondary">
                 {" "}
                 <FontAwesomeIcon icon="share" onClick={() => {

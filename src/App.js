@@ -3,29 +3,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Router } from "./routes/Router";
 import { createContext, useState } from "react";
 export const lenContext = createContext()
+
 function App() {
-  const [length,setLength] = useState('');
-  const [request,setRequest] = useState('');
-  const func = (fet)=>{
-    return fet
-  }
+  const [length, setLength] = useState('');
+  const [request, setRequest] = useState('');
+
   const lenVar = {
-    length:length,
-    setLength:setLength,
-    func:func,
-    request:request,
-    setRequest:setRequest
- 
+    length: length,
+    setLength: setLength,
+    func: {},
+    request: request,
+    setRequest: setRequest
+
   }
   return (
-   
-   
-    <div className="App">
-  < lenContext.Provider value={lenVar}>
+    <div className="bg-dark">
+      < lenContext.Provider value={lenVar}>
 
-    
-      <Router/>
-   </lenContext.Provider>
+
+        <Router />
+      </lenContext.Provider>
     </div>
   );
 }

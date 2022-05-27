@@ -9,6 +9,7 @@ import { lenContext } from "../App";
 import Header from "../components/Header";
 
 function Home() {
+    let {func} = useContext(lenContext);
     // const {func,request} = useContext(lenContext)
     let [listPost, setListPost] = useState([]);
     
@@ -28,8 +29,11 @@ function Home() {
             .then(res => {
                 console.log("onfinishpost", res);
                 setListPost(res.result)
+                
             })
     }
+
+ 
 
     const likeBar =(ids,likers)=>{
         fetch(`http://localhost:3002/post/${ids}`)
@@ -58,7 +62,7 @@ function Home() {
 
                 </div>
 
-                <div className="row bloc2 position-sticky">
+                <div className="row bloc2">
                     <TopUserLike></TopUserLike>
                     <TopUserComment></TopUserComment>
                 </div>
