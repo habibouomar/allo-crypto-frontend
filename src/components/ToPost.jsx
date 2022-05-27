@@ -58,8 +58,10 @@ function ToPost(props) {
         'cETH',
         'Aave',
         'DeFiChain',]);
+        
     const lit = 'Bitcoin';
     const [crypto,setCrypto] = useState('crypto')
+    
     useEffect(() => {
         const userName = localStorage.getItem('userName')
         const bio = localStorage.getItem('bio')

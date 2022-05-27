@@ -6,18 +6,19 @@ import TopUserComment from "../components/TopUserComment";
 import '../styles/home.css';
 import { useState, useEffect } from "react";
 import { lenContext } from "../App";
+import Header from "../components/Header";
 
 function Home() {
-    let {func} = useContext(lenContext);
- 
+    let { func } = useContext(lenContext);
+
     let [listPost, setListPost] = useState([]);
-    
+
     useEffect(() => {
         fetch('http://localhost:3002/post')
             .then(res => res.json())
             .then(res => {
                 setListPost(res.result)
-              
+
             })
     }, [])
 
@@ -28,21 +29,22 @@ function Home() {
             .then(res => {
                 console.log("onfinishpost", res);
                 setListPost(res.result)
-                
+
             })
     }
 
-    const likeBar =(ids,likers)=>{
+    const likeBar = (ids, likers) => {
         fetch(`http://localhost:3002/post/${ids}`)
-        .then(res => res.json())
-        .then(result => {
-            return likers = result[0].likes.length
-        })
+            .then(res => res.json())
+            .then(result => {
+                return likers = result[0].likes.length
+            })
     }
 
     return (
         <div>
-           
+            <Header></Header>
+
             <div className="homeContainer container">
 
                 <div className="bloc1">
@@ -65,7 +67,7 @@ function Home() {
                 </div>
             </div>
         </div>
-    
+
     )
 }
 

@@ -69,17 +69,6 @@
     color: red;
 }
 
-.searchCrypto{
-    display: block;
-    margin: auto;
-    margin-top: 30px;
-    width: 300px;
-    border-radius: 20px;
-    padding-left: 10px;
-    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
-}
-
 .hours2 {
     color: green
 }
@@ -137,8 +126,6 @@ box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15p
 .p {
     color: rgba(0, 0, 0, 0.881);
 }
-
-
 
 .bloc2{
     flex-basis: 30%;
