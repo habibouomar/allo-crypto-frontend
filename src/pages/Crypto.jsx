@@ -101,7 +101,7 @@ function Crypto() {
                                     <div class="col-12 col-sm-6 col-md-4">
                                         <div id="mid">
                                             <div class="p-4">
-                                                <p className="market">Lowest rate <span>24h</span></p>
+                                                <p className="market">Lowest rate <span className="span-jsx">24h</span></p>
                                                 <p>€{element?.market_data?.low_24h?.eur}</p>
                                                 <p className="p">%</p>
                                             </div>
@@ -110,7 +110,7 @@ function Crypto() {
                                     <div class="col-12 col-sm-6 col-md-4">
                                         <div id="circ">
                                             <div class="p-4">
-                                                <p className="market">highest rate <span>24h</span></p>
+                                                <p className="market">highest rate <span className="span-jsx">24h</span></p>
                                                 <p>€{element?.market_data?.high_24h?.eur}</p>
                                                 {/* <p>{element.market_data.market_cap_change_percentage_24h}%</p> */}
                                             </div>

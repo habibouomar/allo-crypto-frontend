@@ -6,13 +6,11 @@ export const lenContext = createContext()
 function App() {
   const [length,setLength] = useState('');
   const [request,setRequest] = useState('');
-  const func = (fet)=>{
-    return fet
-  }
+
   const lenVar = {
     length:length,
     setLength:setLength,
-    func:func,
+    func:{},
     request:request,
     setRequest:setRequest
  

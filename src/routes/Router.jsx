@@ -11,9 +11,9 @@ export class Router extends React.Component {
     return (
       <>
         <Routes>
-          <Route path="/" element={<Signup />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/profil" element={<Profil />} />
           <Route path="/cryptomonaie" element={<Crypto />} />
         </Routes>
