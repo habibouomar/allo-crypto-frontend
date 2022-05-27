@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/signup.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Login = () => {
   const {
@@ -10,6 +11,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [user, setUser] = useState(false);
   const Navigate = useNavigate();
 
   const onSubmit = (data) => {
@@ -28,7 +30,8 @@ const Login = () => {
 
           Navigate("/home");
         } else {
-          Navigate("/login");
+          setUser(true);
+          Navigate("/");
         }
       });
   };
@@ -37,44 +40,45 @@ const Login = () => {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        style={{ color: "gold", fontWeight: 700 }}
+        style={{ overflow: "hidden", color: "gold", fontWeight: 700 }}
       >
-        <h1 style={{ paddingTop: "22vh", textAlign: "center" }}> LOGIN </h1>
-        <div
-          style={{ padding: "25px", marginLeft: "55vh", marginRight: "55vh" }}
-        >
-          <div class="mb-3">
-            <label>User Name</label>
-            <input
-              {...register("username", { required: true })}
-              placeholder="Username please"
-              type="text"
-              class="form-control"
-              name="username"
-            />
-            {errors.username && (
-              <span class="btn btn-dark">Username required</span>
-            )}
-          </div>
+        <h1 style={{ paddingTop: "28vh", textAlign: "center" }}> LOGIN </h1>
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <div class="mb-3">
+              <label>User Name</label>
+              <input
+                {...register("username", { required: true })}
+                placeholder="Username please"
+                type="text"
+                class="form-control"
+                name="username"
+              />
+              {errors.username && (
+                <span class="btn btn-dark">Username required</span>
+              )}
+              {user && <span class="btn btn-dark">Username not exists</span>}
+            </div>
 
-          <button
-            style={{ margin: "auto", display: "block" }}
-            type="submit"
-            class="btn btn-warning"
-          >
-            LOGIN
-          </button>
-          <br></br>
-          <div>
             <button
               style={{ margin: "auto", display: "block" }}
-              class="btn btn-dark"
+              type="submit"
+              class="btn btn-warning"
             >
-              <Link style={{ textDecoration: "none" }} to="/">
-                {" "}
-                S'inscrire{" "}
-              </Link>
+              LOGIN
             </button>
+            <br></br>
+            <div>
+              <button
+                style={{ margin: "auto", display: "block" }}
+                class="btn btn-dark"
+              >
+                <Link style={{ textDecoration: "none" }} to="/signup">
+                  {" "}
+                  S'inscrire{" "}
+                </Link>
+              </button>
+            </div>
           </div>
         </div>
       </form>
