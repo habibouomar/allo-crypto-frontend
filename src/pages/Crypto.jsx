@@ -64,7 +64,7 @@ function Crypto() {
                         <div className="main">
                             <div className="header">
                                 <div className="price">Current price {element?.name} ({element?.symbol})</div>
-                                <div className="container">
+                                <div className="containers">
                                     <div className="crypto logo"><img src={element?.image?.small} /></div>
                                     <div className="crypto name">{element?.name}</div>
                                     <div className="crypto symbol">{element?.symbol}</div>

@@ -62,7 +62,7 @@ function Home() {
 
                 </div>
 
-                <div className="row bloc2 position-sticky">
+                <div className="row bloc2">
                     <TopUserLike></TopUserLike>
                     <TopUserComment></TopUserComment>
                 </div>

@@ -92,10 +92,7 @@ function Post(props) {
                   checkit={checkit}
                 />
               </button>
-              <Button variant="outline-dark">
-                {" "}
-                <FontAwesomeIcon icon="trash" />{" "}
-              </Button>{" "}
+             
               <Button variant="outline-secondary">
                 {" "}
                 <FontAwesomeIcon icon="share" onClick={() => {

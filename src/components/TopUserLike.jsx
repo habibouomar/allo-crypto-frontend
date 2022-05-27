@@ -19,7 +19,7 @@ function TopUserLike() {
 
     return (
 
-        <div className="col-12 pt-5">
+        <div className="col-12  pt-5">
             <Card>
                 <Card.Header>Top User Like</Card.Header>
 
