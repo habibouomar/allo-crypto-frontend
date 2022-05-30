@@ -6,7 +6,8 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ListComments from "../components/ListComments";
 import Settings from "../components/Settings";
-import TopCrypto from "../components/TopCrypto";
+import TopUserComment from "../components/TopUserComment";
+import TopUserLike from "../components/TopUserLike";
 import {motion} from 'framer-motion'
 import Header from "../components/Header";
 import { useParams } from 'react-router-dom'
@@ -158,10 +159,11 @@ function Profil() {
                     <button style={{ borderLeft: '0.5px solid grey', borderBottom: shareBorder }} onClick={getShares}>Shared By {name}</button>
                 </div>
             </div>
-            <div className="feed-div">
+
+            <div className="row bloc-1">
                 <motion.div className="post-profil"
                 initial={{x:'-100vw'}}
-                animate={{x:175}}
+                animate={{x:125}}
                 transition={{type:'spring',duration:1,bounce:0.3}}
                 >
                     {
@@ -170,7 +172,8 @@ function Profil() {
                             // setUser(post.posterID?.userName)
                             console.log(post.text)
                             return (
-                                <div className="col-11 pt-3 pb-1">
+
+                                <div className="col-10 pt-5 pb-1">
             
                                     <Card>
                                        {current === 'share'?
@@ -261,9 +264,12 @@ function Profil() {
                         })
                     }
                 </motion.div>
-                <div className="comment-profil">
+                
+                <div className="row bloc2">
 
-                    <TopCrypto />
+
+                    <TopUserLike />
+                    <TopUserComment />
                 </div>
             </div>
         </div>
