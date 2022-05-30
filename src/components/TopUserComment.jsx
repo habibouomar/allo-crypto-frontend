@@ -21,7 +21,7 @@ function TopUserComment() {
 
         <div className="col-12 pt-5">
         <Card>
-            <Card.Header>Top User Like</Card.Header>
+            <Card.Header>Top User Comment</Card.Header>
 
             <Card.Body>
                 <ListGroup as="ol" numbered>
@@ -37,7 +37,7 @@ function TopUserComment() {
                                     <p>{list.aboutMe}</p>
                                 </div>
 
-                                <Badge bg="danger" pill> {list.commentsGlobal} </Badge>
+                                <Badge bg="success" pill> {list.commentsGlobal} </Badge>
 
                             </ListGroup.Item>
                         )

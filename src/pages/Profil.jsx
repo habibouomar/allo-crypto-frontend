@@ -1,4 +1,3 @@
-// import React, { useId, useState } from "react";
 import "../styles/profil.css"
 import { FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import React, { useContext, useEffect, useState } from "react";
@@ -7,59 +6,38 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ListComments from "../components/ListComments";
 import Settings from "../components/Settings";
-// import { post } from "../../../Allo_crypto/Router/post.router";
 import TopCrypto from "../components/TopCrypto";
 import {motion} from 'framer-motion'
+import Header from "../components/Header";
+import { useParams } from 'react-router-dom'
+
+
 function Profil() {
 
-    let [listPost, setListPost] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:3002/post')
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-                setListPost(res.result)
-            })
-    }, [])
-
-    const [state, setState] = useState({
-        name: "",
-        bio: ""
-    });
-
     const [name, setName] = useState('Marie')
-    const [newName, setNewName] = useState('')
     const [postBorder, setBorder] = useState('2px solid white')
     const [commentBorder, setCBorder] = useState('2px solid white')
     const [shareBorder, setShBorder] = useState('2px solid white')
     const [posts, setPost] = useState([])
     const [currentUser, setUser] = useState('')
-    const bio = localStorage.getItem('bio')
-    const userId = localStorage.getItem('userId')
-    const [newBio, setNewBio] = useState('')
-    const [opacity,setOpacity] = useState('')
-    const [current,setCurrent] = useState('')
-    // console.log(userId,'USERID')
-    function handleChange(evt) {
-        const value = evt.target.value;
-        setNewName(value)
-        setState({
-            ...state,
-            [evt.target.name]: value
-        });
-    }
+    let userId = localStorage.getItem('userId')
+    const [opacity, setOpacity] = useState('')
+    const [current, setCurrent] = useState('')
 
-    const changeBio = (e) => {
-        console.log(e.target.value)
-        setNewBio(e.target.value)
-    }
-    const modalSubmit = (e) => {
-        setName(newName)
-    }
+    const [newName, setNewName] = useState(localStorage.getItem('userName'))
+    const [newBio, setNewBio] = useState(localStorage.getItem('bio'))
 
 
-    useEffect(()=>{
+    let { id } = useParams()
+
+    useEffect(() => {
+
+        if (id) {
+            userId = id;
+            setNewName(localStorage.getItem('searchUser'));
+            setNewBio(localStorage.getItem('searchBio'));
+
+        }
         fetch(`http://localhost:3002/post/profil/${userId}`)
         .then(result => result.json())
         .then(json => {
@@ -70,27 +48,24 @@ function Profil() {
         })
         
     },[])
-    useEffect(()=>{
-        setAnimate({x:0})
-        setTransition({type:'spring', duration:1, bounce:0.3})
+   
 
-    },[posts])
-
-    const Updater = (result)=>{
+    const Updater = (result) => {
         fetch(`http://localhost:3002/post/profil/${userId}`)
-        .then(result => result.json())
-        .then(json => {
-            console.log("POST RESULT", json)
-            setPost(json)
-            
-        })
+            .then(result => result.json())
+            .then(json => {
+                setPost(json)
+
+            })
     }
     const getPost = (e) => {
+        if (id) {
+            userId = id;
+        }
         e.preventDefault()
         fetch(`http://localhost:3002/post/profil/${userId}`)
             .then(result => result.json())
             .then(json => {
-                console.log("POST RESULT", json)
                 setPost(json)
                 setCurrent('post')
                 setOpacity('visible')
@@ -98,18 +73,17 @@ function Profil() {
         setBorder('2px solid blue')
         setCBorder('2px solid white')
         setShBorder('2px solid white')
-        setTexts("")
+      
     }
-    const [initial,setInitial] = useState({x:'-100vw'})
-    const [animate,setAnimate] = useState('')
-    const [transition,setTransition] = useState('')
-    const [texts,setTexts] = useState('')
-    const getComment = (result) => {
-        // e.preventDefault()
+
+    const getComment = (e) => {
+        if (id) {
+            userId = id;
+        }
+        e.preventDefault()
         fetch(`http://localhost:3002/comment/profil/${userId}`)
             .then(result => result.json())
             .then(json => {
-                console.log("COMMENST RESULT", json)
                 setPost(json)
                 setCurrent('comment')
                 setOpacity('hidden')
@@ -117,27 +91,27 @@ function Profil() {
         setCBorder('2px solid blue')
         setBorder('2px solid white')
         setShBorder('2px solid white')
-        setTexts("")
+    
     }
     
     const getShares = (e) => {
+        if (id) {
+            userId = id;
+        }
         e.preventDefault()
         fetch(`http://localhost:3002/share/profil/${userId}`)
-        .then(result => result.json())
-        .then(json => {
-            console.log('SHARES RESULT', json)
-            setPost(json)
-            setCurrent('share')
-            setOpacity('hidden')
-        })
+            .then(result => result.json())
+            .then(json => {
+                setPost(json)
+                setCurrent('share')
+            })
         setShBorder('2px solid blue')
         setBorder('2px solid white')
         setCBorder('2px solid white')
-        setAnimate({x:0})
-        setTransition({type:'spring', duration:1, bounce:0.3})
+       
     }
 
-    const setLike = (id)=>{
+    const setLike = (id) => {
         fetch('http://localhost:3002/post', {
             method: 'PUT',
             headers: new Headers({ "content-type": "application/json" }),
@@ -147,28 +121,35 @@ function Profil() {
             })
         }).then(result => result.json())
             .then(json => {
-                console.log(json)
-             Updater()
-            //    console.log(num)
-               })
-      }
-      const userName = localStorage.getItem('userName')
+                Updater()
+            })
+    }
+
 
     return (
-        <div className="main-div">
-            <div className="background-photo">
-                <img src="https://picsum.photos/130/130?image=1027" className="image" alt="..." />
-            </div>
-            <div className="profile-content">
-                <div className="name-div">
-                    <div>
-                        <span className="first-span">{userName}</span>
+        <div>
+            <Header></Header>
+
+            <div className="main-div">
+                <div className="background-photo">
+                    <img src="https://picsum.photos/130/130?image=1027" className="image" alt="..." />
+                </div>
+                <div className="profile-content">
+                    <div className="name-div">
+                        <div>
+                            <span className="first-span">{newName}</span>
+                        </div>
+                        <div>
+                            <span className="second-span">{newBio}</span>
+                        </div>
+                        <div className="icons-div">
+                            <FaTwitter className="icons" style={{ color: '#1DA1F2' }} /><FaLinkedinIn className="icons" style={{ color: '#0072b1' }} /><FaInstagram className="icons" style={{ color: '#8a3ab9' }} />
+                        </div>
                     </div>
-                    <div>
-                        <span className="second-span">{bio}</span>
-                    </div>
-                    <div className="icons-div">
-                        <FaTwitter className="icons" style={{color:'#1DA1F2'}}/><FaLinkedinIn className="icons" style={{color:'#0072b1'}} /><FaInstagram className="icons" style={{color:'#8a3ab9'}} />
+                    <div className="btns-div">
+                        <button style={{ borderBottom: postBorder }} onClick={getPost}>Posts</button>
+                        <button style={{ borderLeft: '0.5px solid grey', borderBottom: commentBorder }} onClick={getComment}>Comments</button>
+                        <button style={{ borderLeft: '0.5px solid grey', borderBottom: shareBorder }} onClick={getShares}>Shared By {name}</button>
                     </div>
                 </div>
                 <div className="btns-div">
@@ -179,9 +160,9 @@ function Profil() {
             </div>
             <div className="feed-div">
                 <motion.div className="post-profil"
-                initial={initial}
-                animate={animate}
-                transition={transition}
+                initial={{x:'-100vw'}}
+                animate={{x:175}}
+                transition={{type:'spring',duration:1,bounce:0.3}}
                 >
                     {
                         posts.map(post => {
@@ -282,11 +263,8 @@ function Profil() {
                 </motion.div>
                 <div className="comment-profil">
 
+                    <TopCrypto />
                 </div>
-                <div className="share-profile">
-
-                </div>
-                    <TopCrypto/>
             </div>
         </div>
     )

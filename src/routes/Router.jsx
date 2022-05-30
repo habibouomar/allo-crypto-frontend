@@ -15,6 +15,7 @@ export class Router extends React.Component {
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profil" element={<Profil />} />
+          <Route path="/profil/:id" element={<Profil />} />
           <Route path="/cryptomonaie" element={<Crypto />} />
         </Routes>
       </>

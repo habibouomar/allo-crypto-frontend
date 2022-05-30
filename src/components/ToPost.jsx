@@ -8,6 +8,7 @@ function ToPost(props) {
     const [userName, setName] = useState('')
     const [bio, setBio] = useState('')
     const [crypto,setCrypto] = useState('crypto')
+    
     useEffect(() => {
         const userName = localStorage.getItem('userName')
         const bio = localStorage.getItem('bio')
@@ -15,8 +16,6 @@ function ToPost(props) {
         setBio(bio)
         
     })
-    
-    
     
     const [value, setValue] = useState('')
     const userId = localStorage.getItem('userId')

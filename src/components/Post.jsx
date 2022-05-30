@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ListComments from "./ListComments";
 import Settings from "./Settings";
 import { lenContext } from "../App";
-import {motion} from 'framer-motion'
+import Badge from "react-bootstrap/Badge";
+
 function Post(props) {
 
   const [filterId, setFilterId] = useState(null);
@@ -43,6 +44,7 @@ function Post(props) {
 
   const checkit = (length) => {
     return setLikeCount(length)
+
   }
   
   return (
@@ -90,22 +92,19 @@ function Post(props) {
                   checkit={checkit}
                 />
               </button>
-              <Button variant="outline-dark">
-                {" "}
-                <FontAwesomeIcon icon="trash" />{" "}
-              </Button>{" "}
+
               <Button variant="outline-secondary">
                 {" "}
                 <FontAwesomeIcon icon="share" onClick={() => {
                   shareContent(userId, props.content._id)
                 }} />{" "}
               </Button>{" "}
-              <div style={{}}>
-                <span style={{marginLeft:'15px'}}>
-                  {props.content.likes.length}
-                </span>
-                <span style={{ marginLeft:'25px' }}>{likeCount}</span>
+
+              <div>
+                <Badge className="ms-2 me-4" bg="danger" pill>  {props.content.likes.length}</Badge>
+                <Badge bg="success" pill>  {likeCount} </Badge>
               </div>
+
             </div>
           </Card.Body>
         </Card>
