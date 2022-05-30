@@ -15,7 +15,7 @@ function App() {
 
   }
   return (
-    <div className="bg-dark">
+    <div>
       < lenContext.Provider value={lenVar}>
         <Router />
       </lenContext.Provider>

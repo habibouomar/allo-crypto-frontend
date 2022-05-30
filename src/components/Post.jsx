@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ListComments from "./ListComments";
 import Settings from "./Settings";
 import { lenContext } from "../App";
+import Badge from "react-bootstrap/Badge";
+
 function Post(props) {
 
   const [filterId, setFilterId] = useState(null);
@@ -30,7 +32,7 @@ function Post(props) {
   }
 
   const shareContent = (posterID, postID) => {
-  
+
     fetch('http://localhost:3002/share', {
       method: 'POST',
       headers: new Headers({ "content-type": "application/json" }),
@@ -44,6 +46,7 @@ function Post(props) {
 
   const checkit = (length) => {
     return setLikeCount(length)
+
   }
 
 
@@ -53,7 +56,7 @@ function Post(props) {
         <Card>
           <Card.Header>
             {props.content.ownerID.userName}
-            <Settings value={props.content.text}/>{" "}
+            <Settings value={props.content.text} />{" "}
           </Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
@@ -92,19 +95,19 @@ function Post(props) {
                   checkit={checkit}
                 />
               </button>
-             
+
               <Button variant="outline-secondary">
                 {" "}
                 <FontAwesomeIcon icon="share" onClick={() => {
                   shareContent(userId, props.content._id)
                 }} />{" "}
               </Button>{" "}
-              <div style={{}}>
-                <span style={{ backgroundColor: "pink" }}>
-                  {props.content.likes.length}
-                </span>
-                <span style={{ backgroundColor: 'orange' }}>{likeCount}</span>
+
+              <div>
+                <Badge className="ms-2 me-4" bg="danger" pill>  {props.content.likes.length}</Badge>
+                <Badge bg="success" pill>  {likeCount} </Badge>
               </div>
+
             </div>
           </Card.Body>
         </Card>
