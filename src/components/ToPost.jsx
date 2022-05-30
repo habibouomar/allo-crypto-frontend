@@ -7,58 +7,6 @@ function ToPost(props) {
 
     const [userName, setName] = useState('')
     const [bio, setBio] = useState('')
-    const [post, setPost] = useState([
-       ' Bitcoin',
-        'Ethereum',
-        'USD Coin',
-        'Tether',
-        'BNB',
-        'XRP',
-        'Cardano',
-        'Binance USD',
-        'Solana',
-        'Dogecoin',
-        'Polkadot',
-       ' Wrapped Bitcoin',
-        'TRON',
-        'Lido Staked Ether',
-        'Avalanche',
-        'Shiba Inu',
-        'Dai',
-        'LEO Token',
-        'Litecoin',
-        'Cronos',
-        'Polygon',
-        'FTX Token',
-        'NEAR Protocol',
-        'Monero',
-        'Bitcoin Cash',
-        'OKB',
-        'Stellar',
-        'Chainlink',
-        'Ethereum Classic',
-        'Cosmos Hub',
-        'Algorand',
-        'Flow',
-        'Uniswap',
-        'VeChain',
-        'ApeCoin',
-        'Hedera',
-        'Theta Fuel',
-        'Chain',
-        'Elrond',
-        'Internet Computer',
-        'Tezos',
-        'Filecoin',
-        'The Sandbox',
-        'Axie Infinity',
-        'KuCoin Token',
-        'Decentraland',
-        'Frax',
-        'cETH',
-        'Aave',
-        'DeFiChain',]);
-    const lit = 'Bitcoin';
     const [crypto,setCrypto] = useState('crypto')
     useEffect(() => {
         const userName = localStorage.getItem('userName')
@@ -90,6 +38,7 @@ function ToPost(props) {
                 props.onFinishPost(json);
             })
     }
+    const [text,setText] = useState('')
 
     const cryptoSender = (e)=>{
         e.preventDefault()
@@ -104,6 +53,7 @@ function ToPost(props) {
          .then(json=>{
             console.log(json)
         })
+       
     }
 
 
@@ -122,6 +72,9 @@ function ToPost(props) {
                             <div>
                                 <img className="" src="https://picsum.photos/130/130?image=1027" alt="Logo" />
                                 <h5 class="card-title pt-2">{bio}</h5>
+                                <div className="cryptoPage">
+                                    <span>{text}</span>
+                                </div>
                             </div>
                             <form>
 

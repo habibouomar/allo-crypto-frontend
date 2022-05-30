@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ListComments from "./ListComments";
 import Settings from "./Settings";
 import { lenContext } from "../App";
+import {motion} from 'framer-motion'
 function Post(props) {
 
   const [filterId, setFilterId] = useState(null);
@@ -13,7 +14,6 @@ function Post(props) {
   const [likeCount, setLikeCount] = useState('')
 
   const setLike = (id) => {
-
     fetch('http://localhost:3002/post', {
       method: 'PUT',
       headers: new Headers({ "content-type": "application/json" }),
@@ -30,7 +30,6 @@ function Post(props) {
   }
 
   const shareContent = (posterID, postID) => {
-  
     fetch('http://localhost:3002/share', {
       method: 'POST',
       headers: new Headers({ "content-type": "application/json" }),
@@ -45,15 +44,14 @@ function Post(props) {
   const checkit = (length) => {
     return setLikeCount(length)
   }
-  // console.log("PROPSPROPSPROPSs",props.content)
-
+  
   return (
     <div className="row">
       <div className="col-11 pt-3 pb-1">
         <Card>
-          <Card.Header>
+          <Card.Header style={{display:'flex',justifyContent:'space-between'}}>
             {props.content.ownerID.userName}
-            <Settings value={props.content.text}/>{" "}
+           <Settings value={props.content.text} postID={props.content._id} likeFunc={props.likeFunc} currentP={"Post"}/>{" "}
           </Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
@@ -103,10 +101,10 @@ function Post(props) {
                 }} />{" "}
               </Button>{" "}
               <div style={{}}>
-                <span style={{ backgroundColor: "pink" }}>
+                <span style={{marginLeft:'15px'}}>
                   {props.content.likes.length}
                 </span>
-                <span style={{ backgroundColor: 'orange' }}>{likeCount}</span>
+                <span style={{ marginLeft:'25px' }}>{likeCount}</span>
               </div>
             </div>
           </Card.Body>

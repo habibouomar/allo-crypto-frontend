@@ -12,12 +12,181 @@ function Seetings(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [value,setValue] = useState(props.value)
+    const [commentVal,setCommentVal] = useState(props.commentVal)
+    const current = props.current
+    const currentP = props.currentP
+    console.log(current)
+    console.log(currentP)
     const changer = e =>{
         e.preventDefault()
         setValue(e.target.value)
     }
+    const commentChanger = e =>{
+        e.preventDefault()
+        setCommentVal(e.target.value)
+    }
     const comment = localStorage.getItem('commentBody')
-  
+    const postID = props.postID;
+    console.log(postID)
+// add condition to current method POST OR COMMENT 12:30
+    const editor =e=>{
+        e.preventDefault()
+        fetch('http://localhost:3002/post/edit', {
+            method:'PUT',
+            headers:new Headers({"content-type": "application/json"}),
+            body:JSON.stringify({
+                postID:postID,
+                text:value
+            })
+        }).then(result=>result.json())
+        .then(json=>{
+            console.log(json)
+            props.likeFunc(json)
+        })
+        handleClose()
+    }
+
+    const deletePost = e =>{
+        e.preventDefault()
+        fetch('http://localhost:3002/post',{
+            method:'DELETE',
+            headers:new Headers({"content-type":"application/json"}),
+            body:JSON.stringify({
+                postID:postID
+            })
+        }).then(result=>result.json())
+        .then(json=>{
+            console.log(json)
+            props.likeFunc(json)
+        })
+    }
+    const commentId = props.commentID
+    // console.log(commentId)
+    const commentEditor = e =>{
+        e.preventDefault()
+        fetch('http://localhost:3002/comment',{
+            method:'PUT',
+            headers:new Headers({"content-type":"application/json"}),
+            body:JSON.stringify({
+                id:commentId,
+                text:commentVal
+            })
+        }).then(result=>result.json())
+        .then(json=>{
+            console.log(json)
+            props.refresher(json)
+        })
+    }
+
+    const commentDelete = e =>{
+        e.preventDefault()
+        fetch('http://localhost:3002/comment',{
+            method:'DELETE',
+            headers:new Headers({"content-type":"application/json"}),
+            body:JSON.stringify({
+                id:props.commentID
+            })
+        }).then(result=>result.json())
+            .then(json=>{
+                console.log(json)
+                props.refresher(json)
+            })
+    }
+
+
+
+
+
+    useEffect(()=>{
+        if(props.value !== value){
+            setValue(props.value)
+        }else if(props.profileCommentText !== proCommentVal){
+            setProCommentVal(props.profileCommentText)
+        }
+    },[props.value])
+    const currentProfile = props.currentProfile;
+    const profilePostText = props.profilePostText;
+    const profilePostId = props.profilePostId;
+    const profileCommentText = props.profileCommentText;
+    const profileCommentId = props.profileCommentId;
+    const [proCommentVal, setProCommentVal] = useState(props.profileCommentText)
+    const [proPostVal, setProPostVal] = useState(profilePostText)
+    console.log(profileCommentText,"000000000000000000000000000")
+    const proPostChanger =e=>{
+        e.preventDefault()
+        setProPostVal(e.target.value)
+    }
+
+    const proCommentChanger =e=>{
+        e.preventDefault()
+        setProCommentVal(e.target.value)
+    }
+
+
+    const proCommentEditor = e =>{
+        e.preventDefault()
+        fetch('http://localhost:3002/comment',{
+            method:'PUT',
+            headers:new Headers({"content-type":"application/json"}),
+            body:JSON.stringify({
+                id:profileCommentId,
+                text:proCommentVal
+            })
+        }).then(result=>result.json())
+        .then(json=>{
+            console.log(json)
+            props.refresher(json)
+        })
+    }
+
+    const proEditor =e=>{
+        e.preventDefault()
+        fetch('http://localhost:3002/post/edit', {
+            method:'PUT',
+            headers:new Headers({"content-type": "application/json"}),
+            body:JSON.stringify({
+                postID:profilePostId,
+                text:proPostVal
+            })
+        }).then(result=>result.json())
+        .then(json=>{
+            console.log(json)
+            props.updater(json)
+        })
+        handleClose()
+    }
+
+    const proCommentDelete = e =>{
+        e.preventDefault()
+        fetch('http://localhost:3002/comment',{
+            method:'DELETE',
+            headers:new Headers({"content-type":"application/json"}),
+            body:JSON.stringify({
+                id:profilePostId
+            })
+        }).then(result=>result.json())
+            .then(json=>{
+                console.log(json)
+                props.refresher(json)
+            })
+    }
+
+    const proDeletePost = e =>{
+        e.preventDefault()
+        fetch('http://localhost:3002/post',{
+            method:'DELETE',
+            headers:new Headers({"content-type":"application/json"}),
+            body:JSON.stringify({
+                postID:profilePostId
+            })
+        }).then(result=>result.json())
+        .then(json=>{
+            console.log(json)
+            props.updater(json)
+        })
+    }
+
+
 
     return (
         <>
@@ -32,14 +201,41 @@ function Seetings(props) {
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Edit content</Form.Label>
-                            <Form.Control as="textarea" value={value} onChange={changer} rows={2}></Form.Control>
+                           {currentP ? <Form.Control as="textarea" value={value} onChange={changer} rows={2}></Form.Control>
+                           :current ?
+                           <Form.Control as="textarea" value={commentVal} onChange={commentChanger} rows={2}></Form.Control>
+                           :currentProfile === "post"?
+                           <Form.Control as="textarea" value={proPostVal} onChange={proPostChanger} rows={2}></Form.Control>
+                           :currentProfile === "comment"?
+                           <Form.Control as="textarea" value={proCommentVal} onChange={proCommentChanger} rows={2}></Form.Control>
+                           :<p></p>
+                        }
                         </Form.Group>
                     </Form>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>Delete content</Button>
-                    <Button variant="primary" onClick={handleClose}>Update</Button>
+                 {currentP ? 
+                  <Button variant="danger" onClick={deletePost}>Delete content</Button>
+                  : current ?
+                  <Button variant="danger" onClick={commentDelete}>Delete content</Button>
+                  :currentProfile === "post"?
+                  <Button variant="danger" onClick={proDeletePost}>Delete content</Button>
+                  :currentProfile === "comment"?
+                  <Button variant="danger" onClick={proCommentDelete}>Delete content</Button> 
+                  : <p></p>
+                  }
+                    {currentP ? 
+                    <Button variant="primary" onClick={editor}>Update</Button>
+                    : current?
+                    <Button variant="primary" onClick={commentEditor}>Update</Button>
+                    :currentProfile === 'post'?
+                    <Button variant="primary" onClick={proEditor}>Update</Button>
+                    :currentProfile === 'comment' ? 
+                    <Button variant="primary" onClick={proCommentEditor}>Update</Button>
+                    : <p></p> }
+                    
+              
                 </Modal.Footer>
             </Modal>
         </>

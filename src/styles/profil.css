@@ -50,6 +50,7 @@
     width: 141.03px;
     border: none;
     height: 40px;
+    
 }
 
 .icons-div{
@@ -81,4 +82,14 @@
 
 .App{
     background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
+
+.replaced-span{
+    position: absolute;
+    top: 60%;
+    left: 2%;
+}
+
+.card-head{
+    background-image: linear-gradient(to right, rgba(163, 204, 177, 0.992),rgb(138, 188, 167),rgb(203, 234, 213));
 }

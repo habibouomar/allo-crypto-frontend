@@ -66,6 +66,20 @@ function ListComments(props) {
         }
     }, [filterId])
 
+    const refresh = result =>{
+       
+        if (checker) {
+            fetch(`http://localhost:3002/comment/${filterId}`)
+                .then(result => result.json())
+                .then(json => {
+                    setComment(json)
+                    console.log("componentDiMount", json)
+                })
+        } else {
+
+        }
+    }
+    const current = "comment";
     return (
         <>
             <Button variant="outline-success" onClick={handleShow}> <FontAwesomeIcon icon="message" /> </Button>
@@ -87,13 +101,14 @@ function ListComments(props) {
                         {
                             commentList.map(elem => {
                                 console.log('elem', elem);
+                                console.log('COMMENT FILTER ID', elem.text)
                                 console.log("LENGTH",commentList.length)
                                 props.checkit(commentList.length)
                                 return (
 
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                         <div>
-                                            <h4>{elem.ownerID?.userName}<Settings /> </h4>
+                                            <h4>{elem.ownerID?.userName}<Settings commentVal={elem.text} commentID={elem._id} current={current} refresher={refresh}/> </h4>
                                             <p>
                                                 {elem.text}
                                             </p>
