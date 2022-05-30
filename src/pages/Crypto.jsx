@@ -78,7 +78,7 @@ function Crypto() {
                         <div className="row main">
                             <div className="header col-12">
 
-                                <div className="price">Current price {element?.name} ({element?.symbol})</div>
+                                <div className="price">Current Price {element?.name} ({element?.symbol})</div>
 
                                 <div className="containers">
                                     <div className="crypto logo"><img src={element?.image?.small} /></div>
@@ -94,17 +94,19 @@ function Crypto() {
                                 </div>
 
                                 <div className="numbers">
-                                    <div className="rank">rank: {element?.market_cap_rank}</div>
+                                    <div className="rank">Rank: {element?.market_cap_rank}</div>
                                 </div>
 
                             </div>
 
                             <div className="stats col-12">
+
                                 <div className="row">
+
                                     <div className="col-12 col-sm-6 col-md-4">
                                         <div id="cap">
-                                            <div className="p-4">
-                                                <p className="market">cap market</p>
+                                            <div >
+                                                <p className="market">Cap Market</p>
                                                 <p>€{element?.market_data?.market_cap?.eur}</p>
                                                 {
                                                     element?.market_data?.market_cap_change_percentage_24h > 0 ?
@@ -115,19 +117,21 @@ function Crypto() {
                                             </div>
                                         </div>
                                     </div>
+
                                     <div className="col-12 col-sm-6 col-md-4">
                                         <div id="mid">
-                                            <div className="p-4">
-                                                <p className="market">Lowest rate <span className="span-jsx">24h</span></p>
+                                            <div>
+                                                <p className="market">Lowest Rate <span className="span-jsx">24h</span></p>
                                                 <p>€{element?.market_data?.low_24h?.eur}</p>
                                                 <p className="p">%</p>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div className="col-12 col-sm-6 col-md-4">
                                         <div id="circ">
-                                            <div clclassNameass="p-4">
-                                                <p className="market">highest rate <span className="span-jsx">24h</span></p>
+                                            <div>
+                                                <p className="market">Highest Rate <span className="span-jsx">24h</span></p>
                                                 <p>€{element?.market_data?.high_24h?.eur}</p>
                                             </div>
                                         </div>
@@ -154,7 +158,7 @@ function Crypto() {
                                                     return (
                                                         <div className="pb-4">
                                                             <Card>
-                                                                <Card.Header>
+                                                                <Card.Header className="card-head2">
                                                                     {content.ownerID.userName}
                                                                     <Settings />{" "}
                                                                 </Card.Header>

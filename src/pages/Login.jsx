@@ -42,11 +42,11 @@ const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
         style={{ overflow: "hidden", color: "gold", fontWeight: 700 }}
       >
-        <h1 style={{ paddingTop: "28vh", textAlign: "center" }}> LOGIN </h1>
+        <h1 style={{ paddingTop: "28vh", textAlign: "center" }}> Login </h1>
         <div class="row justify-content-center">
           <div class="col-6">
             <div class="mb-3">
-              <label>User Name</label>
+              <label>Username</label>
               <input
                 {...register("username", { required: true })}
                 placeholder="Username please"
@@ -65,7 +65,7 @@ const Login = () => {
               type="submit"
               class="btn btn-warning"
             >
-              LOGIN
+              Validate
             </button>
             <br></br>
             <div>
@@ -74,8 +74,7 @@ const Login = () => {
                 class="btn btn-dark"
               >
                 <Link style={{ textDecoration: "none" }} to="/signup">
-                  {" "}
-                  S'inscrire{" "}
+                  Sign Up
                 </Link>
               </button>
             </div>
