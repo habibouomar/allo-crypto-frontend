@@ -69,7 +69,7 @@ function ToPost(props) {
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
                             <div>
-                                <img className="" src="https://picsum.photos/130/130?image=1027" alt="Logo" />
+                                <img className="" src="https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png" alt="Logo" />
                                 <h5 class="card-title pt-2">{bio}</h5>
                                 <div className="cryptoPage">
                                     <span>{text}</span>
