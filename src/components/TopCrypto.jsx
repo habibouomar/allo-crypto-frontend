@@ -20,7 +20,7 @@ function TopCrypto() {
 
     return (
 
-        <div className="col-5 pt-3">
+        <div className="col-3 pt-3" style={{position:'absolute', left:'65%'}}>
             <Card>
                 <Card.Header>Top Crypto by Coinmarket</Card.Header>
 

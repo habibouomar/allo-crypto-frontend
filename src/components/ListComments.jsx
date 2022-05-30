@@ -8,7 +8,7 @@ import Settings from './Settings'
 import { lenContext } from "../App";
 
 function ListComments(props) {
-    const {length,setLength,setRequest} = useContext(lenContext)
+    const { length, setLength, setRequest } = useContext(lenContext)
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -38,17 +38,19 @@ function ListComments(props) {
                 text: value,
             })
         }).then(commentAdded => commentAdded.json())
-            .then( () => {
+            .then(() => {
                 fetch(`http://localhost:3002/comment/${filterId}`)
                     .then(comments => comments.json())
-                    .then(commentsjson=> {
+                    .then(commentsjson => {
                         console.log("onfinishpost", commentsjson);
                         setComment(commentsjson)
+                        props.updater(commentsjson)
+                        props.checkit(commentsjson.length)
                     })
             })
         localStorage.setItem('commentBody', value)
         setValue('')
- 
+
     }
 
     const checker = props.check;
@@ -60,20 +62,22 @@ function ListComments(props) {
                 .then(json => {
                     setComment(json)
                     console.log("componentDiMount", json)
+
                 })
         } else {
 
         }
     }, [filterId])
 
-    const refresh = result =>{
-       
+    const refresh = result => {
+
         if (checker) {
             fetch(`http://localhost:3002/comment/${filterId}`)
                 .then(result => result.json())
                 .then(json => {
                     setComment(json)
                     console.log("componentDiMount", json)
+                    props.checkit(json.length)
                 })
         } else {
 
@@ -102,13 +106,14 @@ function ListComments(props) {
                             commentList.map(elem => {
                                 console.log('elem', elem);
                                 console.log('COMMENT FILTER ID', elem.text)
-                                console.log("LENGTH",commentList.length)
-                                props.checkit(commentList.length)
+                                console.log("LENGTH", commentList.length)
+                                // props.checkit(commentList.length)
+                                console.log("", elem.postID)
                                 return (
 
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                         <div>
-                                            <h4>{elem.ownerID?.userName}<Settings commentVal={elem.text} commentID={elem._id} current={current} refresher={refresh}/> </h4>
+                                            <h4>{elem.ownerID?.userName}<Settings commentVal={elem.text} commentID={elem._id} current={current} refresher={refresh} postID={elem.postID} /> </h4>
                                             <p>
                                                 {elem.text}
                                             </p>

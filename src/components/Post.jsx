@@ -12,8 +12,9 @@ function Post(props) {
   const [filterId, setFilterId] = useState(null);
   const [check, setCheck] = useState(false);
   const userId = localStorage.getItem('userId')
-  const [likeCount, setLikeCount] = useState('')
-
+  const [commentCount, setCommentCount] = useState(props.content.commentCount || 0)
+  const userName = localStorage.getItem('userName')
+ 
   const setLike = (id) => {
     fetch('http://localhost:3002/post', {
       method: 'PUT',
@@ -43,7 +44,7 @@ function Post(props) {
   }
 
   const checkit = (length) => {
-    return setLikeCount(length)
+    return setCommentCount(length)
 
   }
   
@@ -53,7 +54,10 @@ function Post(props) {
         <Card>
           <Card.Header style={{display:'flex',justifyContent:'space-between'}}>
             {props.content.ownerID.userName}
-           <Settings value={props.content.text} postID={props.content._id} likeFunc={props.likeFunc} currentP={"Post"}/>{" "}
+           {props.content.ownerID.userName === userName ?
+           <Settings value={props.content.text} postID={props.content._id} likeFunc={props.likeFunc} currentP={"Post"}/>
+          :<p></p>
+          }
           </Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
@@ -90,6 +94,7 @@ function Post(props) {
                   likerId={userId}
                   check={check}
                   checkit={checkit}
+                  updater={props.likeFunc}
                 />
               </button>
 
@@ -102,7 +107,8 @@ function Post(props) {
 
               <div>
                 <Badge className="ms-2 me-4" bg="danger" pill>  {props.content.likes.length}</Badge>
-                <Badge bg="success" pill>  {likeCount} </Badge>
+                
+                <Badge bg="success" pill>  {commentCount} </Badge>
               </div>
 
             </div>

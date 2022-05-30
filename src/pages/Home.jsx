@@ -53,6 +53,7 @@ function Home() {
 
                     <div>
                         {listPost.map(post => {
+                            
                             return (
                                 <Post likeFunc={onFinishPost} content={post} ></Post>
                             )

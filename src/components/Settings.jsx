@@ -15,8 +15,7 @@ function Seetings(props) {
     const [commentVal,setCommentVal] = useState(props.commentVal)
     const current = props.current
     const currentP = props.currentP
-    console.log(current)
-    console.log(currentP)
+   
     const changer = e =>{
         e.preventDefault()
         setValue(e.target.value)
@@ -27,8 +26,8 @@ function Seetings(props) {
     }
     const comment = localStorage.getItem('commentBody')
     const postID = props.postID;
-    console.log(postID)
-// add condition to current method POST OR COMMENT 12:30
+    
+
     const editor =e=>{
         e.preventDefault()
         fetch('http://localhost:3002/post/edit', {
@@ -61,7 +60,6 @@ function Seetings(props) {
         })
     }
     const commentId = props.commentID
-    // console.log(commentId)
     const commentEditor = e =>{
         e.preventDefault()
         fetch('http://localhost:3002/comment',{
@@ -84,7 +82,8 @@ function Seetings(props) {
             method:'DELETE',
             headers:new Headers({"content-type":"application/json"}),
             body:JSON.stringify({
-                id:props.commentID
+                id:props.commentID,
+                postID:props.postID
             })
         }).then(result=>result.json())
             .then(json=>{
@@ -102,6 +101,8 @@ function Seetings(props) {
             setValue(props.value)
         }else if(props.profileCommentText !== proCommentVal){
             setProCommentVal(props.profileCommentText)
+        }else if(props.commentVal !== commentVal){
+            setCommentVal(props.commentVal)
         }
     },[props.value])
     const currentProfile = props.currentProfile;
@@ -111,7 +112,6 @@ function Seetings(props) {
     const profileCommentId = props.profileCommentId;
     const [proCommentVal, setProCommentVal] = useState(props.profileCommentText)
     const [proPostVal, setProPostVal] = useState(profilePostText)
-    console.log(profileCommentText,"000000000000000000000000000")
     const proPostChanger =e=>{
         e.preventDefault()
         setProPostVal(e.target.value)
