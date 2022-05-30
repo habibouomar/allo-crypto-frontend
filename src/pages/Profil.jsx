@@ -190,7 +190,7 @@ function Profil() {
                                         </Card.Header>
                                         :<p></p>
                                     }
-                                        <Card.Body>
+                                        <Card.Body >
                                             <blockquote className="blockquote mb-0">
                                                {current === 'share'? <span style={{fontSize:'20px',fontWeight:'bold'}}>{post.postID?.ownerID.userName} <span  style={{fontSize:'15px',fontWeight:'lighter', color:'violet'}} className="replaced-span">created this post on {post.postID?.createdAt}</span></span> : <p></p> }
                                                {current === 'share'? <p>{post.postID?.text}</p>:<p>{post.text }</p>}
