@@ -51,6 +51,7 @@ function ToPost(props) {
         }).then(result=>result.json())
          .then(json=>{
             console.log(json)
+            window.location.href = '/cryptomonaie';
         })
        
     }
