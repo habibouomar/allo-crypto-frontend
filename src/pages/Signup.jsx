@@ -38,15 +38,23 @@ const Signup = () => {
 
   return (
     <div>
+      <div>
+        <img
+          className="logo-signup"
+          src="/img/logo-allo_crypto.png"
+          alt="logo-crypto"
+        />
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{ overflow: "hidden", color: "gold", fontWeight: 700 }}
       >
-        <h1 style={{ paddingTop: "8vh", textAlign: "center" }}> SIGNUP </h1>
+        <h1 style={{ textAlign: "center" }}> Sign Up </h1>
+
         <div class="row justify-content-center">
           <div class="col-6">
             <div class="mb-3">
-              <label>User Name</label>
+              <label>Username</label>
               <input
                 {...register("username", { required: true })}
                 placeholder="Username please"
@@ -78,7 +86,7 @@ const Signup = () => {
               )}
             </div>
 
-            <div class="mb-3">
+            {/* <div class="mb-3">
               <label>Picture</label>
               <input
                 {...register("img", { required: true })}
@@ -92,13 +100,14 @@ const Signup = () => {
                   Please insert a profile picture
                 </span>
               )}
-            </div>
+            </div> */}
+
             <button
               style={{ margin: "auto", display: "block" }}
               type="submit"
               class="btn btn-warning"
             >
-              CONFIRM
+              Validate
             </button>
 
             <br />
@@ -109,8 +118,7 @@ const Signup = () => {
                 class="btn btn-dark"
               >
                 <Link style={{ textDecoration: "none" }} to="/">
-                  {" "}
-                  Se connecter{" "}
+                  Login
                 </Link>
               </button>
             </div>

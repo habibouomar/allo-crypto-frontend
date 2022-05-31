@@ -53,6 +53,7 @@
     
 }
 
+
 .icons-div{
     position: absolute;
     left: 60%;
@@ -82,10 +83,6 @@
     margin-right:20px ;
 }
 
-.App{
-    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
-}
-
 .replaced-span{
     position: absolute;
     top: 60%;
@@ -96,3 +93,6 @@
     background-image: linear-gradient(to right, rgba(163, 204, 177, 0.992),rgb(138, 188, 167),rgb(203, 234, 213));
 }
 
+.card-head2{
+    background-image: linear-gradient(to right, rgba(163, 167, 204, 0.992),rgb(138, 145, 188),rgb(203, 203, 234));
+}

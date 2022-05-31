@@ -1,6 +1,6 @@
 .price {
     text-align: right;
-    width: 92%;
+    width: 97%;
     margin-top: 20px;
     padding-top: 20px;
 }
@@ -21,7 +21,7 @@
 }
 
 .symbol {
-    background-color: orangered;
+    background-color: rgb(2, 35, 70);
     padding: 10px;
     border-radius: 10px;
     font-size: 15px;

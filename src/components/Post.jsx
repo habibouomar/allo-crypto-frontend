@@ -52,7 +52,7 @@ function Post(props) {
     <div className="row">
       <div className="col-11 pt-3 pb-1">
         <Card>
-          <Card.Header style={{display:'flex',justifyContent:'space-between'}}>
+          <Card.Header className="card-head" style={{display:'flex',justifyContent:'space-between'}}>
             {props.content.ownerID.userName}
            {props.content.ownerID.userName === userName ?
            <Settings value={props.content.text} postID={props.content._id} likeFunc={props.likeFunc} currentP={"Post"}/>

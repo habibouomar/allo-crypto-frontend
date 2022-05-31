@@ -1,6 +1,5 @@
 import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { useState, useEffect } from 'react'
@@ -20,18 +19,20 @@ function TopCrypto() {
 
     return (
 
-        <div className="col-3 pt-3" style={{position:'absolute', left:'65%'}}>
+        <div className="col-5 pt-3">
+
             <Card>
-                <Card.Header>Top Crypto by Coinmarket</Card.Header>
+                <Card.Header>Top Search Crypto on Coingecko</Card.Header>
 
                 <Card.Body>
                     <ListGroup as="ol" numbered>
 
                         {post.map((element) => {
+                            console.log("aaaaaaa", element);
                             return (
                                 <ListGroup.Item as="li" >
                                     <img src={element?.item?.small} className="topCrypto-img" />
-                                    {element.item.symbol}
+                                    {element.item.symbol} // {element.item.id}
                                 </ListGroup.Item>
                             )
                         })}
