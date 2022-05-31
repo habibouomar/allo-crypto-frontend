@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/signup.css";
+import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+// import images from "../styles/images/logo-allo_crypto.png";
 
 const Login = () => {
   const {
@@ -38,11 +39,18 @@ const Login = () => {
 
   return (
     <div>
+      <div>
+        <img
+          className="logo-login"
+          src="/img/logo-allo_crypto.png"
+          alt="logo-crypto"
+        />
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{ overflow: "hidden", color: "gold", fontWeight: 700 }}
       >
-        <h1 style={{ paddingTop: "28vh", textAlign: "center" }}> Login </h1>
+        <h1 style={{ textAlign: "center" }}> Login </h1>
         <div class="row justify-content-center">
           <div class="col-6">
             <div class="mb-3">

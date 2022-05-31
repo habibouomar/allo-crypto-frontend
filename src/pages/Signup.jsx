@@ -38,16 +38,21 @@ const Signup = () => {
 
   return (
     <div>
+      <div>
+        <img
+          className="logo-signup"
+          src="/img/logo-allo_crypto.png"
+          alt="logo-crypto"
+        />
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{ overflow: "hidden", color: "gold", fontWeight: 700 }}
       >
-        <h1 style={{ paddingTop: "8vh", textAlign: "center" }}> Sign Up </h1>
+        <h1 style={{ textAlign: "center" }}> Sign Up </h1>
 
         <div class="row justify-content-center">
-         
           <div class="col-6">
-           
             <div class="mb-3">
               <label>Username</label>
               <input
@@ -96,7 +101,7 @@ const Signup = () => {
                 </span>
               )}
             </div> */}
-            
+
             <button
               style={{ margin: "auto", display: "block" }}
               type="submit"
@@ -113,7 +118,7 @@ const Signup = () => {
                 class="btn btn-dark"
               >
                 <Link style={{ textDecoration: "none" }} to="/">
-                 Login
+                  Login
                 </Link>
               </button>
             </div>
