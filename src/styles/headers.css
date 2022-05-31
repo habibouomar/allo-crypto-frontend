@@ -30,3 +30,12 @@
 .dropdown-toggle {
   outline: 0;
 }
+
+
+.msg-div{
+  position: absolute;
+  left: 90%;
+  top: 7%;
+  background-color: whitesmoke ;
+  color: red;
+}

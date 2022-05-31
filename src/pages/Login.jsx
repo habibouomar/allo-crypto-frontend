@@ -1,11 +1,14 @@
 import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/login.css";
+import "../styles/signup.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-// import images from "../styles/images/logo-allo_crypto.png";
-
+import bitCoin from '../styles/images/Bitcoin.jpg'
+import dogeCoin from '../styles/images/dogeCoin.jpg'
+import lite from '../styles/images/litcoin.png'
+import eth from '../styles/images/secCoin.jpeg'
+import { motion } from "framer-motion";
 const Login = () => {
   const {
     register,
@@ -39,22 +42,37 @@ const Login = () => {
 
   return (
     <div>
-      <div>
-        <img
-          className="logo-login"
-          src="/img/logo-allo_crypto.png"
-          alt="logo-crypto"
+      <div className="imgs-animate">
+        <motion.img className="child-one" src={bitCoin} alt="bitcoin image"  
+        whileTap={{scale:0.9}}
+        drag={true}
+        whileDrag={{boxShadow: "0px 10px 16px gold"}}
+        initial={{opacity:0,y:-100}}
+        animate={{opacity:1,y:0,transition:{type:'spring',duration:2,bounce:0.5},}}
         />
+        <motion.img className="child-two" src={dogeCoin} alt="bitcoin image" 
+        whileTap={{scale:0.7}}
+        drag={true}
+        whileDrag={{boxShadow: "0px 10px 16px gold"}}
+        initial={{opacity:0,y:100}}
+        animate={{opacity:1,y:0,transition:{type:'spring',duration:2,bounce:0.5},}}
+        />
+        <motion.img className="child-three" src={eth} alt="bitcoin image"  
+        whileTap={{scale:0.8}}
+        drag={true}
+        whileDrag={{boxShadow: "0px 10px 16px silver"}}
+        initial={{opacity:0,x:100}}
+        animate={{opacity:1,x:0,transition:{type:'spring',duration:2,bounce:0.5},}}/>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{ overflow: "hidden", color: "gold", fontWeight: 700 }}
       >
-        <h1 style={{ textAlign: "center" }}> Login </h1>
+        <h1 style={{ paddingTop: "28vh", textAlign: "center" }}> LOGIN </h1>
         <div class="row justify-content-center">
           <div class="col-6">
             <div class="mb-3">
-              <label>Username</label>
+              <label>User Name</label>
               <input
                 {...register("username", { required: true })}
                 placeholder="Username please"
@@ -68,13 +86,15 @@ const Login = () => {
               {user && <span class="btn btn-dark">Username not exists</span>}
             </div>
 
-            <button
+            <motion.button
+              whileHover={{scale:1.2}}
+              whileTap={{scale:0.95,background:'black',color:'gold'}}
               style={{ margin: "auto", display: "block" }}
               type="submit"
               class="btn btn-warning"
             >
-              Validate
-            </button>
+              LOGIN
+            </motion.button>
             <br></br>
             <div>
               <button
@@ -82,7 +102,8 @@ const Login = () => {
                 class="btn btn-dark"
               >
                 <Link style={{ textDecoration: "none" }} to="/signup">
-                  Sign Up
+                  {" "}
+                  S'inscrire{" "}
                 </Link>
               </button>
             </div>

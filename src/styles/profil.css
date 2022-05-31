@@ -53,10 +53,12 @@
     
 }
 
+
 .icons-div{
     position: absolute;
     left: 60%;
     top:43%;
+    cursor: pointer;
 }
 
 .icons{
