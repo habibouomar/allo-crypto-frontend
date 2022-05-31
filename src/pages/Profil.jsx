@@ -143,7 +143,9 @@ function Profil() {
                             <span className="second-span">{newBio}</span>
                         </div>
                         <div className="icons-div">
-                            <FaTwitter className="icons" style={{ color: '#1DA1F2' }} /><FaLinkedinIn className="icons" style={{ color: '#0072b1' }} /><FaInstagram className="icons" style={{ color: '#8a3ab9' }} />
+                            <a href="https://twitter.com/?logout=1653928220673" target="_blank"><FaTwitter className="icons" style={{ color: '#1DA1F2' }} /></a> 
+                            <a href="https://www.linkedin.com/home"  target="_blank"><FaLinkedinIn className="icons" style={{ color: '#0072b1' }} /></a>
+                            <a href="https://www.instagram.com/accounts/login/" target="_blank"><FaInstagram className="icons" style={{ color: '#8a3ab9' }} /></a> 
                         </div>
                     </div>
                     <div className="btns-div">
@@ -151,11 +153,6 @@ function Profil() {
                         <button style={{ borderLeft: '0.5px solid grey', borderBottom: commentBorder }} onClick={getComment}>Comments</button>
                         <button style={{ borderLeft: '0.5px solid grey', borderBottom: shareBorder }} onClick={getShares}>Shared By {name}</button>
                     </div>
-                </div>
-                <div className="btns-div">
-                    <button style={{ borderBottom: postBorder }} onClick={getPost}>Posts</button>
-                    <button style={{ borderLeft: '0.5px solid grey', borderBottom: commentBorder }} onClick={getComment}>Comments</button>
-                    <button style={{ borderLeft: '0.5px solid grey', borderBottom: shareBorder }} onClick={getShares}>Shared By {name}</button>
                 </div>
             </div>
             <div className="feed-div">
@@ -237,10 +234,6 @@ function Profil() {
                                                     //   checkit={checkit}
                                                     />
                                                 </button>
-                                                <Button variant="outline-dark">
-                                                    {" "}
-                                                    <FontAwesomeIcon icon="trash" />{" "}
-                                                </Button>{" "}
                                                 <Button variant="outline-secondary">
                                                     {" "}
                                                     <FontAwesomeIcon icon="share" onClick={() => {

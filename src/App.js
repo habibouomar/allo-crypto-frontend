@@ -2,6 +2,7 @@ import "./styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Router } from "./routes/Router";
 import { createContext, useState } from "react";
+import './styles/login.css'
 export const lenContext = createContext();
 
 

@@ -13,6 +13,7 @@ function Header() {
         setValue(e.target.value)
         console.log(e.target.value);
     }
+    const userName = localStorage.getItem('userName')
 
     const checkUser = (e) => {
 
@@ -35,7 +36,7 @@ function Header() {
     }
 
     return (
-        <>
+        <div>
             <header className="p-3 bg-dark text-white">
                 <div className="container">
 
@@ -58,12 +59,15 @@ function Header() {
 
                         </form>
 
-                        <button type="button" className="btn btn-warning">Log Out</button>
+                        <button type="button" className="btn btn-warning" onClick={()=>{
+                            navigate('/')
+                        }} onMouseEnter={()=>{
+
+                        }}>Log Out</button>
                     </div>
                 </div>
             </header>
-
-        </>
+        </div>
     )
 }
 

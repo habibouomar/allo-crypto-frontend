@@ -72,7 +72,7 @@ function Post(props) {
                 variant="outline-danger"
                 onClick={() => {
                   setLike(props.content._id);
-                  checkit()
+                  // checkit()
                 }}
               >
                 {" "}
