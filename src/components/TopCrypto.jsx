@@ -47,7 +47,7 @@ function TopCrypto(props) {
                                 return (
                                     <ListGroup.Item as="li" >
                                         <img src={element?.item?.small} className="topCrypto-img" />
-                                        {element.item.symbol} // {element.item.id}
+                                        {element.item.symbol} ➜ {element.item.id}
                                     </ListGroup.Item>
                                 )
                             })}
