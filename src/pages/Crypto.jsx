@@ -8,7 +8,6 @@ import Header from "../components/Header";
 import TopCrypto from "../components/TopCrypto";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 function Crypto() {
 
     let [listPost, setListPost] = useState([]);
@@ -30,7 +29,6 @@ function Crypto() {
                 setListPost([json])
             })
     }, [search]);
-
 
     const submit = (event) => {
         event.preventdefault();
@@ -57,7 +55,7 @@ function Crypto() {
                         <form onSubmit={submit}>
 
                             <div className="input-group">
-                                <span className="input-group-text" id="inputGroup-sizing-default">Cryptocurrencye</span>
+                                <span className="input-group-text" id="inputGroup-sizing-default">Cryptocurrency</span>
 
                                 <input onChange={handleChange} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Bitcoin..."/>
                             </div>
@@ -67,7 +65,6 @@ function Crypto() {
                     </div>
                 </div>
             </div>
-
 
             {post.map(element => {
 
@@ -143,11 +140,9 @@ function Crypto() {
 
                         <div>
 
-
                             {listPost.map((post, index) => {
 
                                 return (
-
 
                                     <div className="row">
 
@@ -193,10 +188,8 @@ function Crypto() {
                             })
                             }
 
-
                         </div>
                     </div>
-
                 )
             })}
         </div>

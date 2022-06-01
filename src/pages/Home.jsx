@@ -3,6 +3,7 @@ import ToPost from "../components/ToPost";
 import Post from "../components/Post";
 import TopUserLike from "../components/TopUserLike";
 import TopUserComment from "../components/TopUserComment";
+import Articles from "../components/Articles";
 import '../styles/home.css';
 import { useState, useEffect } from "react";
 import { lenContext } from "../App";
@@ -65,6 +66,7 @@ function Home() {
                 <div className="row bloc2">
                     <TopUserLike></TopUserLike>
                     <TopUserComment></TopUserComment>
+                    <Articles></Articles>
                 </div>
             </div>
         </div>

@@ -42,7 +42,7 @@ function Header() {
 
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-                        <a class="navbar-brand text-warning fw-bold" href="http://localhost:3000/home">AlloCrypto</a>
+                        <a className="navbar-brand text-warning fw-bold" href="http://localhost:3000/home">AlloCrypto</a>
 
                         <nav className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <NavLink className="nav-link text-white" aria-current="page" to="/home">Home</NavLink>
