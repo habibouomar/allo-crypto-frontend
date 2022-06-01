@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import bitCoin from '../styles/images/Bitcoin.jpg'
 import dogeCoin from '../styles/images/dogeCoin.jpg'
-import lite from '../styles/images/litcoin.png'
 import eth from '../styles/images/secCoin.jpeg'
 import { motion } from "framer-motion";
 const Login = () => {
@@ -64,26 +63,35 @@ const Login = () => {
         initial={{opacity:0,x:100}}
         animate={{opacity:1,x:0,transition:{type:'spring',duration:2,bounce:0.5},}}/>
       </div>
+
+      <div>
+        <img
+          className="logo-login"
+          src="/img/logo-allo_crypto.png"
+          alt="logo-crypto"
+        />
+      </div>
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{ overflow: "hidden", color: "gold", fontWeight: 700 }}
       >
-        <h1 style={{ paddingTop: "28vh", textAlign: "center" }}> LOGIN </h1>
-        <div class="row justify-content-center">
-          <div class="col-6">
-            <div class="mb-3">
-              <label>User Name</label>
+        <h1 style={{ textAlign: "center" }}> Login </h1>
+        <div className="row justify-content-center">
+          <div className="col-6">
+            <div className="mb-3">
+              <label>Username</label>
               <input
                 {...register("username", { required: true })}
                 placeholder="Username please"
                 type="text"
-                class="form-control"
+                className="form-control"
                 name="username"
               />
               {errors.username && (
-                <span class="btn btn-dark">Username required</span>
+                <span className="btn btn-dark">Username required</span>
               )}
-              {user && <span class="btn btn-dark">Username not exists</span>}
+              {user && <span className="btn btn-dark">Username not exists</span>}
             </div>
 
             <motion.button
@@ -91,19 +99,18 @@ const Login = () => {
               whileTap={{scale:0.95,background:'black',color:'gold'}}
               style={{ margin: "auto", display: "block" }}
               type="submit"
-              class="btn btn-warning"
+              className="btn btn-warning"
             >
-              LOGIN
+              Validate
             </motion.button>
             <br></br>
             <div>
               <button
                 style={{ margin: "auto", display: "block" }}
-                class="btn btn-dark"
+                className="btn btn-dark"
               >
                 <Link style={{ textDecoration: "none" }} to="/signup">
-                  {" "}
-                  S'inscrire{" "}
+                  Sign Up
                 </Link>
               </button>
             </div>

@@ -9,7 +9,7 @@ function Articles() {
     let [Articles, setArticles] = useState([]);
 
     useEffect(() => {
-        fetch('http://api.mediastack.com/v1/news?access_key=8a06d67088388dfd82bca332351a8784&languages=fr&keywords=bitcoin&offset=2&limit=5')
+        fetch('http://api.mediastack.com/v1/news?access_key=3198ddc6c880301b60340f1e3fed01e9&languages=fr&keywords=bitcoin&offset=2&limit=5')
             .then(res => res.json())
             .then(res => {
                 setArticles(res.data) 
@@ -34,7 +34,7 @@ function Articles() {
                                     <div className="ms-2 me-auto">
                                         <div className="fw-bold">{list.title}</div>
                                         <p className="mb-2 text-muted">{list.source}</p>
-                                        <p>{list.description}</p>
+                                        <p className="text-justify">{list.description}</p>
                                         <div>
                                             <a href={list.url} target="_blank" className="fw-bold">Read more</a>
                                         </div>

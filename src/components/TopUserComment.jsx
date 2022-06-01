@@ -13,7 +13,6 @@ function TopUserComment() {
             .then(res => res.json())
             .then(res => {
                 setTopUserComment(res)
-                console.log(res);
             })
     }, [])
 

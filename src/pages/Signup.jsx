@@ -51,52 +51,52 @@ const Signup = () => {
       >
         <h1 style={{ textAlign: "center" }}> Sign Up </h1>
 
-        <div class="row justify-content-center">
-          <div class="col-6">
-            <div class="mb-3">
+        <div className="row justify-content-center">
+          <div className="col-6">
+            <div className="mb-3">
               <label>Username</label>
               <input
                 {...register("username", { required: true })}
                 placeholder="Username please"
                 type="text"
-                class="form-control"
+                className="form-control"
                 name="username"
               />
               {errors.username && (
-                <span class="btn btn-dark">Username required</span>
+                <span className="btn btn-dark">Username required</span>
               )}
               {userError === true && (
-                <span class="btn btn-dark">Username already exists</span>
+                <span className="btn btn-dark">Username already exists</span>
               )}
             </div>
 
-            <div class="mb-3">
+            <div className="mb-3">
               <label>Bio</label>
               <textarea
                 {...register("bio", { required: true })}
                 placeholder="About you please"
                 type="text"
-                class="form-control"
+                className="form-control"
                 name="bio"
               />
               {errors.bio && (
-                <span class="btn btn-dark">
+                <span className="btn btn-dark">
                   Please give an overview about yourself
                 </span>
               )}
             </div>
 
-            {/* <div class="mb-3">
+            {/* <div className="mb-3">
               <label>Picture</label>
               <input
                 {...register("img", { required: true })}
                 placeholder="profile picture please"
                 type="text"
-                class="form-control"
+                className="form-control"
                 name="img"
               />
               {errors.img && (
-                <span class="btn btn-dark">
+                <span className="btn btn-dark">
                   Please insert a profile picture
                 </span>
               )}
@@ -105,7 +105,7 @@ const Signup = () => {
             <button
               style={{ margin: "auto", display: "block" }}
               type="submit"
-              class="btn btn-warning"
+              className="btn btn-warning"
             >
               Validate
             </button>
@@ -115,7 +115,7 @@ const Signup = () => {
             <div>
               <button
                 style={{ margin: "auto", display: "block" }}
-                class="btn btn-dark"
+                className="btn btn-dark"
               >
                 <Link style={{ textDecoration: "none" }} to="/">
                   Login

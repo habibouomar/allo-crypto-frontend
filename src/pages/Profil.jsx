@@ -10,8 +10,8 @@ import TopUserComment from "../components/TopUserComment";
 import TopUserLike from "../components/TopUserLike";
 import { motion } from 'framer-motion';
 import Header from "../components/Header";
-import { useParams } from 'react-router-dom'
-
+import { useParams } from 'react-router-dom';
+import Badge from "react-bootstrap/Badge";
 
 function Profil() {
 
@@ -42,7 +42,6 @@ function Profil() {
         fetch(`http://localhost:3002/post/profil/${userId}`)
             .then(result => result.json())
             .then(json => {
-                console.log("POST RESULT", json)
                 setPost(json)
                 setCurrent('post')
 
@@ -56,7 +55,6 @@ function Profil() {
             .then(result => result.json())
             .then(json => {
                 setPost(json)
-
             })
     }
     const getPost = (e) => {
@@ -92,7 +90,6 @@ function Profil() {
         setCBorder('2px solid blue')
         setBorder('2px solid white')
         setShBorder('2px solid white')
-
     }
 
     const getShares = (e) => {
@@ -126,7 +123,6 @@ function Profil() {
             })
     }
 
-
     return (
         <div>
             <Header></Header>
@@ -144,16 +140,16 @@ function Profil() {
                             <span className="second-span">{newBio}</span>
                         </div>
                         <div className="icons-div">
-                            <a href="https://twitter.com/?logout=1653928220673" target="_blank"><FaTwitter className="icons" style={{ color: '#1DA1F2' }} /></a> 
-                            <a href="https://www.linkedin.com/home"  target="_blank"><FaLinkedinIn className="icons" style={{ color: '#0072b1' }} /></a>
-                            <a href="https://www.instagram.com/accounts/login/" target="_blank"><FaInstagram className="icons" style={{ color: '#8a3ab9' }} /></a> 
+                            <a href="https://twitter.com/?logout=1653928220673" target="_blank"><FaTwitter className="icons" style={{ color: '#1DA1F2' }} /></a>
+                            <a href="https://www.linkedin.com/home" target="_blank"><FaLinkedinIn className="icons" style={{ color: '#0072b1' }} /></a>
+                            <a href="https://www.instagram.com/accounts/login/" target="_blank"><FaInstagram className="icons" style={{ color: '#8a3ab9' }} /></a>
                         </div>
                     </div>
                 </div>
                 <div className="btns-div">
                     <button style={{ borderBottom: postBorder }} onClick={getPost}>Posts</button>
                     <button style={{ borderLeft: '0.5px solid grey', borderBottom: commentBorder }} onClick={getComment}>Comments</button>
-                    <button style={{ borderLeft: '0.5px solid grey', borderBottom: shareBorder,width:"170px" }} onClick={getShares}>Shared by {newName}</button>
+                    <button style={{ borderLeft: '0.5px solid grey', borderBottom: shareBorder, width: "170px" }} onClick={getShares}>Shared by {newName}</button>
                 </div>
             </div>
 
@@ -162,7 +158,7 @@ function Profil() {
                 <div className="row bloc-1">
                     <motion.div className="post-profil"
                         initial={{ x: '-100vw' }}
-                        animate={{ x: -53}}
+                        animate={{ x: -53 }}
                         transition={{ type: 'spring', duration: 1, bounce: 0.3 }}
                     >
                         {
@@ -242,11 +238,12 @@ function Profil() {
                                                             // shareContent(userId,props.content._id)
                                                         }} />
                                                     </Button>
-                                                    <div style={{}}>
-                                                        <span style={{ visibility: opacity, marginLeft: '15px' }}>
+                                                    <div >
+                                                        <Badge className="ms-2 me-4" bg="danger" pill>
                                                             {current === "share" ? post.postID?.likes.length : current === 'post' ? post.likes?.length : <p></p>}
-                                                        </span>
-                                                        <span style={{ backgroundColor: 'orange', visibility: opacity }}>{ }</span>
+                                                        </Badge>
+
+                                                        {/* <Badge bg="success" pill>  </Badge> */}
                                                     </div>
                                                 </div>
                                             </Card.Body>

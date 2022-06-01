@@ -19,13 +19,11 @@ function Crypto() {
 
         axios.get(`https://api.coingecko.com/api/v3/coins/${search}`).then((response) => {
             setPost([response.data]);
-            console.log(response.data)
-
         });
+
         fetch('http://localhost:3002/crypto')
             .then(res => res.json())
-            .then(json => {
-                console.log(json);
+            .then(json => {             
                 setListPost([json])
             })
     }, [search]);
@@ -36,9 +34,6 @@ function Crypto() {
 
     const handleChange = (event) => {
         setSearch(event.target.value)
-        console.log("crypto.jsx search===null", search === null)
-        console.log("crypto.jsx search", search)
-        console.log("crypto.jsx event.target.value", event.target.value)
         if (!event.target.value) {
             setSearch('bitcoin')
         }
@@ -181,7 +176,7 @@ function Crypto() {
                                             }
                                         </div>
 
-                                        <TopCrypto />
+                                        <TopCrypto content={search}  />
 
                                     </div>
                                 )

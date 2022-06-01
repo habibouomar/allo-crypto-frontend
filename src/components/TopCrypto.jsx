@@ -5,25 +5,31 @@ import Badge from "react-bootstrap/Badge";
 import axios from "axios";
 import { useState, useEffect } from 'react'
 
-function TopCrypto() {
+function TopCrypto(props) {
 
     const [post, setPost] = useState([]);
     let [Articles, setArticles] = useState([]);
+
+    const receiveAmount = props.content
+    const sendAmount = props.content
 
     useEffect(() => {
 
         axios.get('https://api.coingecko.com/api/v3/search/trending').then((response) => {
             setPost(response.data.coins);
-            console.log(response.data.coins)
-
         });
 
-        fetch(`http://api.mediastack.com/v1/news?access_key=8a06d67088388dfd82bca332351a8784&languages=en&keywords=bitcoin&offset=0&limit=5`)
+        fetch(`http://api.mediastack.com/v1/news?access_key=3198ddc6c880301b60340f1e3fed01e9&languages=en&keywords=${receiveAmount}&offset=0&limit=5`)
             .then(res => res.json())
             .then(res => {
                 setArticles(res.data)
             })
-    }, []);
+
+        fetch(`http://api.mediastack.com/v1/news?access_key=3198ddc6c880301b60340f1e3fed01e9&languages=en&keywords=${sendAmount}&offset=0&limit=5`)
+            .then(res => res.json())
+            .then(newsjson => {
+            })
+    }, [receiveAmount, sendAmount]);
 
     return (
 
@@ -37,7 +43,7 @@ function TopCrypto() {
                         <ListGroup as="ol" numbered>
 
                             {post.map((element) => {
-                                console.log("aaaaaaa", element);
+
                                 return (
                                     <ListGroup.Item as="li" >
                                         <img src={element?.item?.small} className="topCrypto-img" />
@@ -67,7 +73,7 @@ function TopCrypto() {
                                         <div className="ms-2 me-auto">
                                             <div className="fw-bold">{list.title}</div>
                                             <p className="mb-2 text-muted">{list.source}</p>
-                                            <p>{list.description}</p>
+                                            <p className="text-justify">{list.description}</p>
                                             <div>
                                                 <a href={list.url} target="_blank">Article Link</a>
                                             </div>
@@ -80,9 +86,9 @@ function TopCrypto() {
                             })}
 
                         </ListGroup>
-                        
+
                     </Card.Body>
-                    
+
                 </Card>
 
             </div>
