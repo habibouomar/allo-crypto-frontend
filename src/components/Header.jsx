@@ -28,6 +28,8 @@ function Header() {
                     localStorage.setItem("searchUser", user["user"].userName);
                     localStorage.setItem("searchBio", user["user"].aboutMe);
                     navigate(`/profil/${user["user"]._id}`)
+                    console.log(user["user"].picture)
+                    localStorage.setItem('searchedUser', user["user"].picture)
                 }
                 else {
                     alert("user not find, please try again")
@@ -42,18 +44,18 @@ function Header() {
 
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-                        <a class="navbar-brand text-warning fw-bold" href="http://localhost:3000/home">AlloCrypto</a>
+                        <a className="navbar-brand text-warning fw-bold" href="http://localhost:3000/home">AlloCrypto</a>
 
                         <nav className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <NavLink className="nav-link text-white" aria-current="page" to="/home">Home</NavLink>
-                            <NavLink className="nav-link px-2 text-white" to="/profil">Profil</NavLink>
-                            <NavLink className="nav-link px-2 text-white" to="/cryptomonaie">Cryptomonaie</NavLink>
+                            <NavLink className="nav-link px-2 text-white" to="/profil">Profile</NavLink>
+                            <NavLink className="nav-link px-2 text-white" to="/cryptomonaie">Cryptocurrency</NavLink>
                         </nav>
 
                         <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
 
                             <div className="input-group">
-                                <button onClick={checkUser} class="btn btn-success" type="button" id="button-addon1">Search User</button>
+                                <button onClick={checkUser} className="btn btn-success" type="button" id="button-addon1">Search User</button>
                                 <input onChange={getValue} type="search" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Marie..." />
                             </div>
 

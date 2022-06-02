@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/signup.css";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-
+import axios from 'axios';
 const Signup = () => {
   const {
     register,
@@ -22,7 +22,7 @@ const Signup = () => {
       body: JSON.stringify({
         userName: data.username,
         aboutMe: data.bio,
-        picture: data.img,
+        picture: file,
       }),
     })
       .then((res) => res.json())
@@ -38,14 +38,17 @@ const Signup = () => {
   };
   const uploadedImage = React.useRef(null)
   const imageUploader = React.useRef(null)
-  const [image, setImage] = useState('')
+  const [myImage, setImage] = useState('')
+  const [file,setFile] = useState('');
   const [opacity,setOpacity] = useState('')
   const [border,setBorder] = useState('0.5px solid gold')
+
   const imageChanger = e => {
     const [file] = e.target.files;
     if (file) {
       const reader = new FileReader();
       const { current } = uploadedImage;
+      setImage(e.target.files[0])
       current.file = file;
       reader.onload = (e) => {
         current.src = e.target.result;
@@ -53,6 +56,26 @@ const Signup = () => {
       reader.readAsDataURL(file);
     }
   }
+
+  const uploadImage = e =>{
+    e.preventDefault();
+    const formData = new FormData()
+    formData.append('myImage', myImage)
+    axios({
+      method:"post",
+      url:'http://localhost:3002/upload-image',
+      data:formData
+    })
+    .then(result=>{
+      const {data} = result;
+      setFile(data.url)
+      localStorage.setItem('userImg', data.url)
+    })
+    .catch(err=>{
+      console.log(err);
+    });
+  }
+
   return (
     <div>
       <div>
@@ -88,6 +111,7 @@ const Signup = () => {
                   imageUploader.current.click()
                   setOpacity('hidden')
                   setBorder('none')
+               
                 }}
               >
                 <img
@@ -103,8 +127,8 @@ const Signup = () => {
                   }}
                 />
                 <span style={{position:'absolute', fontSize:'50px', color:'gold',top:'31.9%',left:'49%',fontWeight:'lighter',cursor:'pointer',visibility:opacity}}>+</span>
-                <span style={{position:'absolute',top:'46.5%',left:'46.5%'}}>Upload your image</span>
               </div>
+                <button onClick={uploadImage} style={{position:'absolute',top:'46.5%',left:'46.5%'}}>Upload</button>
             </div>
             <div class="mb-3" style={{marginTop:'80px'}}>
               <label>Username</label>
@@ -112,55 +136,38 @@ const Signup = () => {
                 {...register("username", { required: true })}
                 placeholder="Username please"
                 type="text"
-                class="form-control"
+                className="form-control"
                 name="username"
               />
               {errors.username && (
-                <span class="btn btn-dark">Username required</span>
+                <span className="btn btn-dark">Username required</span>
               )}
               {userError === true && (
-                <span class="btn btn-dark">Username already exists</span>
+                <span className="btn btn-dark">Username already exists</span>
               )}
             </div>
 
-            <div class="mb-3">
+            <div className="mb-3">
               <label>Bio</label>
               <textarea
                 {...register("bio", { required: true })}
                 placeholder="About you please"
                 type="text"
-                class="form-control"
+                className="form-control"
                 name="bio"
               />
               {errors.bio && (
-                <span class="btn btn-dark">
+                <span className="btn btn-dark">
                   Please give an overview about yourself
                 </span>
               )}
             </div>
-
-            {/* <div class="mb-3">
-              <label>Picture</label>
-              <input
-                {...register("img", { required: true })}
-                placeholder="profile picture please"
-                type="text"
-                class="form-control"
-                name="img"
-              />
-              {errors.img && (
-                <span class="btn btn-dark">
-                  Please insert a profile picture
-                </span>
-              )}
-            </div> */}
-
             <button
               style={{ margin: "auto", display: "block" }}
               type="submit"
-              class="btn btn-warning"
+              className="btn btn-warning"
             >
-              Validate
+              Signup
             </button>
 
             <br />
@@ -168,7 +175,7 @@ const Signup = () => {
             <div>
               <button
                 style={{ margin: "auto", display: "block" }}
-                class="btn btn-dark"
+                className="btn btn-dark"
               >
                 <Link style={{ textDecoration: "none" }} to="/">
                   Login

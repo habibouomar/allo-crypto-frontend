@@ -41,6 +41,7 @@ function Post(props) {
       })
     }).then(result => result.json())
       .then(json => console.log(json))
+      alert("This post has been archived in your profile")
   }
 
   const checkit = (length) => {

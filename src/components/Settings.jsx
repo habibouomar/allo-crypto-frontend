@@ -185,9 +185,22 @@ function Seetings(props) {
             props.updater(json)
         })
     }
+   const shPostID = props.sharedPostId;
 
-
-
+    const proShareDelete = (e) =>{
+        e.preventDefault()
+        fetch('http://localhost:3002/share',{
+            method:'DELETE',
+            headers:new Headers({"content-type": "application/json"}),
+            body:JSON.stringify({
+                id:shPostID
+            })
+        }).then(result=>result.json())
+        .then(json=>{
+            console.log(json)
+            props.updater(json)
+        })
+    }
     return (
         <>
             <Button variant="outline-ligh" onClick={handleShow}> <FontAwesomeIcon icon="fa-solid fa-ellipsis" /> </Button>
@@ -223,6 +236,8 @@ function Seetings(props) {
                   <Button variant="danger" onClick={proDeletePost}>Delete content</Button>
                   :currentProfile === "comment"?
                   <Button variant="danger" onClick={proCommentDelete}>Delete content</Button> 
+                  :shPostID ?
+                  <Button variant="danger" onClick={proShareDelete}>Delete content</Button>
                   : <p></p>
                   }
                     {currentP ? 

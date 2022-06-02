@@ -51,6 +51,7 @@ function ToPost(props) {
         }).then(result=>result.json())
          .then(json=>{
             console.log(json)
+            window.location.href = '/cryptomonaie';
         })
        
     }
@@ -59,6 +60,8 @@ function ToPost(props) {
     const changer = (e) => {
         setValue(e.target.value)
     }
+
+    const userImage = localStorage.getItem('userImg')
 
     return (
 
@@ -69,8 +72,8 @@ function ToPost(props) {
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
                             <div>
-                                <img className="" src="https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png" alt="Logo" />
-                                <h5 class="card-title pt-2">{bio}</h5>
+                                <img className="" src={userImage} alt="Logo" />
+                                <h5 className="card-title pt-2">{bio}</h5>
                                 <div className="cryptoPage">
                                     <span>{text}</span>
                                 </div>
@@ -81,8 +84,8 @@ function ToPost(props) {
                                 <div className="text-end">
 
                                   { 
-                                   value.includes('#')? <button type="submit" class="btn btn-primary mt-3 " onClick={cryptoSender}> New Post</button> :
-                                  <button type="submit" class="btn btn-primary mt-3 " onClick={sender}> New Post</button>
+                                   value.includes('#')? <button type="submit" className="btn btn-primary mt-3 " onClick={cryptoSender}> New Post</button> :
+                                  <button type="submit" className="btn btn-primary mt-3 " onClick={sender}> New Post</button>
                                   }
                                 </div>
                             </form>
