@@ -27,7 +27,7 @@ function Profil() {
 
     const [newName, setNewName] = useState(localStorage.getItem('userName'))
     const [newBio, setNewBio] = useState(localStorage.getItem('bio'))
-
+    const [newPic,setPic] = useState(localStorage.getItem('userImg'))
 
     let { id } = useParams()
 
@@ -37,7 +37,7 @@ function Profil() {
             userId = id;
             setNewName(localStorage.getItem('searchUser'));
             setNewBio(localStorage.getItem('searchBio'));
-
+            setPic(localStorage.getItem('searchedUser'))
         }
         fetch(`http://localhost:3002/post/profil/${userId}`)
             .then(result => result.json())
@@ -72,6 +72,7 @@ function Profil() {
         setBorder('2px solid blue')
         setCBorder('2px solid white')
         setShBorder('2px solid white')
+        setVisible('visible')
 
     }
 
@@ -90,8 +91,11 @@ function Profil() {
         setCBorder('2px solid blue')
         setBorder('2px solid white')
         setShBorder('2px solid white')
-    }
+        setVisible('hidden')
 
+    
+    }
+    const [visible,setVisible] = useState('visible')
     const getShares = (e) => {
         if (id) {
             userId = id;
@@ -100,13 +104,14 @@ function Profil() {
         fetch(`http://localhost:3002/share/profil/${userId}`)
             .then(result => result.json())
             .then(json => {
+                console.log(json)
                 setPost(json)
                 setCurrent('share')
             })
         setShBorder('2px solid blue')
         setBorder('2px solid white')
         setCBorder('2px solid white')
-
+        setVisible('hidden')
     }
 
     const setLike = (id) => {
@@ -122,14 +127,16 @@ function Profil() {
                 Updater()
             })
     }
-
+    const userImage = localStorage.getItem('userImg')
+    const searched = localStorage.getItem('searchedUser')
+    // "https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png"
     return (
         <div>
             <Header></Header>
 
             <div className="main-div">
                 <div className="background-photo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png" className="image" alt="..." />
+                    <img src={newPic} className="image" alt="..." />
                 </div>
                 <div className="profile-content">
                     <div className="name-div">
@@ -149,7 +156,7 @@ function Profil() {
                 <div className="btns-div">
                     <button style={{ borderBottom: postBorder }} onClick={getPost}>Posts</button>
                     <button style={{ borderLeft: '0.5px solid grey', borderBottom: commentBorder }} onClick={getComment}>Comments</button>
-                    <button style={{ borderLeft: '0.5px solid grey', borderBottom: shareBorder, width: "170px" }} onClick={getShares}>Shared by {newName}</button>
+                    <button style={{ borderLeft: '0.5px solid grey', borderBottom: shareBorder, width: "inherit" }} onClick={getShares}>Shared by {newName}</button>
                 </div>
             </div>
 
@@ -172,7 +179,7 @@ function Profil() {
                                             {current === 'share' ?
                                                 <Card.Header className="card-head" style={{ display: 'flex', justifyContent: 'space-between' }}>
                                                     {post.posterID.userName}
-                                                    <Settings />{" "}
+                                                    <Settings sharedPostId={post.id} updater={getShares}/>{" "}
                                                 </Card.Header>
                                                 : current === 'post' ?
                                                     <Card.Header className="card-head" style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -205,7 +212,7 @@ function Profil() {
                                                                 <cite title="Source Title">{ }</cite>
                                                             </footer>}
                                                 </blockquote>
-                                                <div className="pt-5" style={{ visibility: opacity }}>
+                                                <div className="pt-5" style={{ visibility: visible }}>
                                                     <Button
                                                         variant="outline-danger"
                                                         onClick={() => {
@@ -219,21 +226,18 @@ function Profil() {
                                                             padding: "none",
                                                             border: "none",
                                                             backgroundColor: "white",
+                                                            visibility:visible
                                                         }}
                                                         onClick={() => {
-                                                            //   setFilterId(props.content._id);
-                                                            //   setCheck(true);
+                                                           
                                                         }}
                                                     >
                                                         <ListComments
-                                                        //   filterId={filterId}
-                                                        //   likerId={userId}
-                                                        //   check={check}
-                                                        //   checkit={checkit}
+                        
                                                         />
                                                     </button>
 
-                                                    <Button variant="outline-secondary">
+                                                    <Button style={{visibility:visible}} variant="outline-secondary">
                                                         <FontAwesomeIcon icon="share" onClick={() => {
                                                             // shareContent(userId,props.content._id)
                                                         }} />

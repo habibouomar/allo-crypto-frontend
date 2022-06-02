@@ -61,6 +61,8 @@ function ToPost(props) {
         setValue(e.target.value)
     }
 
+    const userImage = localStorage.getItem('userImg')
+
     return (
 
         <div className="row">
@@ -70,7 +72,7 @@ function ToPost(props) {
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
                             <div>
-                                <img className="" src="https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png" alt="Logo" />
+                                <img className="" src={userImage} alt="Logo" />
                                 <h5 className="card-title pt-2">{bio}</h5>
                                 <div className="cryptoPage">
                                     <span>{text}</span>

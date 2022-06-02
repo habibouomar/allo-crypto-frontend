@@ -28,6 +28,8 @@ function Header() {
                     localStorage.setItem("searchUser", user["user"].userName);
                     localStorage.setItem("searchBio", user["user"].aboutMe);
                     navigate(`/profil/${user["user"]._id}`)
+                    console.log(user["user"].picture)
+                    localStorage.setItem('searchedUser', user["user"].picture)
                 }
                 else {
                     alert("user not find, please try again")
