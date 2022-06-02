@@ -54,7 +54,7 @@ function Header() {
 
                             <div className="input-group">
                                 <button onClick={checkUser} className="btn btn-success" type="button" id="button-addon1">Search User</button>
-                                <input onChange={getValue} type="search" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Marie..." />
+                                <input onChange={getValue} type="search" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Search User..." />
                             </div>
 
                         </form>
